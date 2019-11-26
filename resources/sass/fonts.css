@@ -1,0 +1,24 @@
+@font-face {
+	font-family: "subset-GraphikLCG-Bold";
+	src: local("../fonts/Graphik LCG/subset-GraphikLCG-Bold"),
+		url("../fonts/Graphik LCG/subset-GraphikLCG-Bold.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "subset-Graphik-Regular";
+	src: local("../fonts/Graphik LCG/subset-Graphik-Regular"),
+		url("../fonts/Graphik LCG/subset-Graphik-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "subset-Graphik-Semibold";
+	src: local("../fonts/Graphik LCG/subset-Graphik-Semibold"),
+		url("../fonts/Graphik LCG/subset-Graphik-Semibold.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
