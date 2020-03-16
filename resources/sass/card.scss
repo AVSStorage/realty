@@ -1,0 +1,131 @@
+#map {
+    width: 750px;
+    height: 450xp;
+}
+
+@media (max-width: 767px) {
+    #cardFilter {
+        order: -1;
+    }
+
+    .main__left {
+        padding-bottom: 20px;
+    }
+
+    .main__anim-fancy {
+        width: 100%;
+    }
+    #animModal {
+        padding: 14px;
+    }
+    .main {
+        &__title {
+            font-size: 20px;
+        }
+        &__left {
+            width: 100%;
+            padding-left: 10px;
+            &-price {
+                width: 100%;
+                position: relative;
+            }
+            .main-text {
+                position: unset;
+                width: 70%;
+                &::before {
+                    right: 30px;
+                    left: unset;
+                }
+            }
+        }
+        .setting__inner {
+            border: 1px solid #e8e8e8;
+        }
+        .form__inner .flag__russia {
+            display: none;
+        }
+        .km__inner .kms {
+            width: 100%;
+        }
+        &__inner {
+            flex-wrap: wrap;
+        }
+        &__right {
+            padding-left: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+            height: 100vh;
+            overflow: auto;
+            background-color: white;
+            form {
+                width: 75%;
+            }
+            &-price {
+                padding: 0 10px;
+                width: 100%;
+                position: relative;
+            }
+            &-btn {
+                margin: 0 auto;
+                border: none;
+            }
+            &-form label {
+                width: 100%;
+            }
+            &-form .datepicker,
+            &-form .guests {
+                width: 100%;
+            }
+            .center {
+                margin-top: 0;
+            }
+        }
+        &__service {
+            margin-bottom: 20px;
+            &-inner {
+                flex-wrap: wrap;
+            }
+        }
+        &__info {
+            &-inner {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .main__right-much .main__right-info {
+        left: -10px;
+    }
+    #map {
+        width: 100%;
+    }
+    .reviews {
+        &__inner {
+            .center {
+                margin-top: 30px;
+                padding-left: 0;
+            }
+        }
+        &__block-inner {
+            flex-wrap: wrap;
+        }
+    }
+    .rev {
+        &__inner-right {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 350px) {
+    .reviews {
+        &__clear {
+            &::before {
+                display: none;
+            }
+        }
+    }
+}

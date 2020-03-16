@@ -1,14 +1,13 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
-@import 'normalize.css';
-@import 'index.css';
 @import 'fonts.css';
+@import 'icomoon.css';
+@import 'normalize.css';
+@import 'jquery.fancybox.min.css';
+@import 'slick.css';
+@import 'magnific-popup.css';
 @import '404.css';
 @import 'add-calendar.css';
 @import 'add-object.css';
@@ -22,9 +21,6 @@
 @import 'client-area.css';
 @import 'comparison.css';
 @import 'house.css';
-@import 'icomoon.css';
-@import 'jquery.fancybox.min.css';
-@import 'magnific-popup.css';
 @import 'media.css';
 @import 'personal-area.css';
 @import 'personal-client.css';
@@ -32,4 +28,12 @@
 @import 'personal-my.css';
 @import 'personal-setting.css';
 @import 'simplebar.css';
-@import 'slick.css';
+@import 'index.css';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import "layout";
+@import "index";
+@import "catalog";
+@import "card";
+@import "dialog";
+@import "objects"

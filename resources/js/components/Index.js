@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import SliderWithData from "./SliderWithData";
 
-export default class Example extends Component {
-    render() {
-        return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Example Component</div>
+const IndexComponent = () => {
 
-                            <div className="card-body">I'm an example component!</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
-}
+  return (
+      <div className="container">
+      <div className="stop">
+          <div className="container">
+              <div className="slider">
+                  <div className="stop__title">
+                      Где остановиться?
+                  </div>
+                  <div className="slider__items">
+    <SliderWithData type ={'places'} />
+                  </div>
+              </div>
+          </div>
+
+      <div className="container">
+        <div className="stop__title">
+        Популярные
+    направления
+    </div>
+    <div className="slider__items">
+            <SliderWithData type ={'country'} />
+    </div>
+    </div>
+      </div>
+      </div>
+
+  );
+};
 
 if (document.getElementById('example2')) {
-    ReactDOM.render(<Example />, document.getElementById('example2'));
+    ReactDOM.render(<IndexComponent />, document.getElementById('example2'));
 }
+
+
+

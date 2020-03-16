@@ -1,0 +1,105 @@
+#vertical-tabpanel-3,
+#vertical-tabpanel-1 {
+    width:80%;
+}
+    @media (max-width: 900px) {
+        .intro {
+            &__inner {
+                padding-top: 5%;
+            }
+            &__title {
+                font-size: 2em;
+            }
+            &__inner {
+
+            }
+        }
+        .intro__form-inner {
+            height: auto;
+
+             padding-top: 15%;
+                .datepicker,
+                .guests {
+                    width: 90%;
+                    margin-top: 20px;
+                }
+                .house--btn {
+                     width: 90%;
+                    margin: 10px 0;
+                }
+        }
+        .automplete-google {
+            width: 90%;
+        }
+        .slider__title {
+            font-size: 1em;
+        }
+        .stop {
+            padding-top: 2%;
+            &__title {
+                font-size: 2em;
+            }
+        }
+        .slider__btn {
+            top: 165px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .slider__btn {
+            padding: 10px 14px;
+            top: 115px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .intro {
+            &__inner {
+                padding-top: 15%;
+
+
+            }
+            &__form-inner {
+                height: auto;
+                  .datepicker,
+                .guests {
+                    width: 90%;
+                    margin-top: 20px;
+                }
+
+                  .house--btn {
+                     width: 90%;
+                    margin: 10px 0;
+                }
+            }
+            &__title {
+                font-size: 25px;
+            }
+        }
+        .slider__item {
+            left: 0px;
+        }
+        .slider__title {
+            font-size: 2em;
+        }
+        .slider__img {
+            width: 100%;
+            max-width: 100%;
+        }
+        .slider__items {
+            margin-bottom: 20px;
+        }
+        .slider__btn {
+            padding: 15px 28px;
+            top: 200px;
+        }
+        .stop {
+            padding-top: 5%;
+            &__title {
+                font-size: 25px;
+            }
+        }
+        .MuiPickersBasePicker-pickerView {
+            min-width: 290px !important;
+        }
+    }

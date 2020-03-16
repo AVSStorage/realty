@@ -1,0 +1,183 @@
+.km-col-2 {
+    display: flex;
+    width: 49%;
+}
+
+.km-col-3 {
+    display: flex;
+    width: 49%;
+}
+
+
+@media (max-width: 1000px){
+        .photo-items{
+        width: 100%;
+        padding-right: 0;
+    }
+
+    #vertical-tabpanel-1 {
+        width: 78%;
+    }
+
+    .order {
+        margin-top: 10px;
+    }
+    .btn-per-right,
+    .btn-per-right-1 {
+        padding-right: 2px;
+
+padding-left: 10px;
+
+font-size: 15px;
+
+width: 100%;
+
+display: block;
+    }
+
+    .chara__left-inner {
+        flex-wrap: wrap;
+    }
+
+
+    .chara__item,
+    .chara__center-block {
+        width: 50%;
+    }
+
+    .chara__right-inner {
+        width:100%;
+    }
+    .chara__right .chara__right-btn {
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width: 812px) {
+    .chara {
+        &__left,
+        &__right {
+            width: 100%;
+        }
+        &__right {
+            flex-wrap: wrap;
+            .MuiTabs-flexContainerVertical {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+    }
+    .km-col-2,
+    .km-col-3 {
+        width: 100%;
+    }
+        #vertical-tabpanel-1 {
+        width: 100%;
+    }
+
+    #vertical-tabpanel-0 {
+        width: 100%;
+    }
+    .km__inner .kms {
+        width: 100%;
+    }
+    #objectsTypes .chara__left-maximum {
+        flex-wrap: nowrap
+    }
+
+    #objectsTypes .photo__inner .photo__item {
+        width: 50%;
+    }
+    #objectsTypes .calendar__min-btn {
+        flex-wrap: nowrap
+    }
+    #objectsTypes .calendar__right-input {
+        width: 90%;
+    }
+    .price-tabs {
+        margin: 0 !important;
+    }
+    .chara__left-inner-house {
+        padding: 20px 20px 0px 20px;
+    }
+    .street .MuiInputBase-root {
+        display: flex;
+        justify-content: flex-end;
+    }
+    .attraction__right {
+        padding-left: 0;
+    }
+    .calendar__widget-panel {
+        margin-top: 20px;
+    }
+    #objectsTypes .datepicker .MuiInputBase-root,
+    #objectsTypes .datepicker .MuiInputAdornment-root {
+        flex-wrap: nowrap;
+        width: auto;
+    }
+
+    #objectsTypes .MuiInputBase-adornedEnd,
+    #objectsTypes .MuiInputAdornment-positionEnd{
+        flex-wrap:nowrap;
+    }
+
+
+
+    .photo {
+        .MuiFormControlLabel-root.objects333 {
+            width: 100%;
+            height: auto;
+        }
+        &__text,
+        &__title {
+            width: 100%;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        &-items {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    .photo-items .photo__text {
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .chara__left-inner {
+        flex-direction: column;
+    }
+    #objectsTypes div {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .persona__border-area {
+        margin-bottom: 10px;
+    }
+     .btn-per-right,
+    .btn-per-right-1 {
+    padding-left: 53px;
+    }
+    .personal__all {
+        height: auto;
+    }
+    .form__inner .flag__russia {
+        display: none;
+    }
+    .setting {
+        &__info {
+            border: 1px solid #e8e8e8;
+        }
+    }
+}
+
+@media (max-width: 576px){
+        #vertical-tab-0,
+    #vertical-tab-1,
+    #vertical-tab-2,
+    #vertical-tab-3{
+        max-width: 100%;
+    }
+}

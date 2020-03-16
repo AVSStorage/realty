@@ -1,0 +1,130 @@
+@media (max-width: 576px) {
+    .dialog {
+        &__inner {
+            flex-wrap: wrap;
+            &-left {
+                margin-top: 0;
+                width: 100%;
+            }
+            &-right {
+                order: -1;
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    }
+    .rev__rev {
+        font-size: 25px;
+    }
+    .attention__footer-inner .attetion__footer-text-4 {
+        width: 100%;
+    }
+    #collapseExample {
+        margin-top: 40px;
+        a {
+            display: block;
+            width: 100%;
+        }
+    }
+    .attention {
+        &__inner {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        &__right {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        &__left {
+            display: none;
+        }
+        &__footer-text-inner {
+            flex-wrap: wrap;
+        }
+        &__footer-text-2 {
+            width: 100%;
+        }
+        &__footer-btn {
+            margin: 0 auto;
+        }
+    }
+    .personal__right-btn-1,
+    .order,
+    .order-3 {
+        margin-top: 9px;
+    }
+    .personal__right-btn-1 .img__plus-add-1 {
+        top: 25px;
+    }
+    .img__plus-add {
+        top: 25px;
+    }
+    .personal__right-btn-1 {
+        position: relative;
+    }
+    .personal {
+        &__left-rev {
+            width: 100%;
+        }
+        &__right {
+            width: 100%;
+            margin-top: 10px;
+            &-btn {
+                width: 100%;
+                position: relative;
+            }
+        }
+        &__left {
+            width: 100%;
+        }
+        &__inner {
+            flex-wrap: wrap;
+        }
+        &__rev__inner {
+            width: 100%;
+        }
+    }
+    .reserver {
+        border: none;
+    }
+    .client {
+        &__inner {
+            flex-wrap: wrap;
+        }
+        &--span {
+            display: block;
+        }
+        &__block {
+            padding: 32px 12px;
+        }
+    }
+    .chara__title {
+        font-size: 20px;
+    }
+    .slider__calendar .rdrDay {
+        width: 14%;
+        height: 60px;
+    }
+    .slider__calendar .rdrPprevButton {
+        left: 0;
+    }
+    .slider__calendar .rdrNextButton {
+        left: 85%;
+    }
+    .icon-1 {
+        display: none;
+    }
+    .setting {
+        &__right {
+            border-right: 1px solid #e8e8e8;
+            padding: 0;
+        }
+        &__left,
+        &__right {
+            width: 100%;
+        }
+        &__inner {
+            flex-direction: column;
+        }
+    }
+}
