@@ -8,52 +8,39 @@
     width: 49%;
 }
 
-
-@media (max-width: 1000px){
-        .photo-items{
+@media (max-width: 1000px) {
+    .photo-items {
         width: 100%;
         padding-right: 0;
     }
-
     #vertical-tabpanel-1 {
         width: 78%;
     }
-
     .order {
         margin-top: 10px;
     }
     .btn-per-right,
     .btn-per-right-1 {
         padding-right: 2px;
-
-padding-left: 10px;
-
-font-size: 15px;
-
-width: 100%;
-
-display: block;
+        padding-left: 10px;
+        font-size: 15px;
+        width: 100%;
+        display: block;
     }
-
     .chara__left-inner {
         flex-wrap: wrap;
     }
-
-
     .chara__item,
     .chara__center-block {
         width: 50%;
     }
-
     .chara__right-inner {
-        width:100%;
+        width: 100%;
     }
     .chara__right .chara__right-btn {
         width: 100%;
     }
-
 }
-
 
 @media (max-width: 812px) {
     .chara {
@@ -73,10 +60,9 @@ display: block;
     .km-col-3 {
         width: 100%;
     }
-        #vertical-tabpanel-1 {
+    #vertical-tabpanel-1 {
         width: 100%;
     }
-
     #vertical-tabpanel-0 {
         width: 100%;
     }
@@ -86,7 +72,6 @@ display: block;
     #objectsTypes .chara__left-maximum {
         flex-wrap: nowrap
     }
-
     #objectsTypes .photo__inner .photo__item {
         width: 50%;
     }
@@ -117,14 +102,10 @@ display: block;
         flex-wrap: nowrap;
         width: auto;
     }
-
     #objectsTypes .MuiInputBase-adornedEnd,
-    #objectsTypes .MuiInputAdornment-positionEnd{
-        flex-wrap:nowrap;
+    #objectsTypes .MuiInputAdornment-positionEnd {
+        flex-wrap: nowrap;
     }
-
-
-
     .photo {
         .MuiFormControlLabel-root.objects333 {
             width: 100%;
@@ -156,10 +137,6 @@ display: block;
     .persona__border-area {
         margin-bottom: 10px;
     }
-     .btn-per-right,
-    .btn-per-right-1 {
-    padding-left: 53px;
-    }
     .personal__all {
         height: auto;
     }
@@ -173,11 +150,15 @@ display: block;
     }
 }
 
-@media (max-width: 576px){
-        #vertical-tab-0,
+@media (max-width: 576px) {
+    #vertical-tab-0,
     #vertical-tab-1,
     #vertical-tab-2,
-    #vertical-tab-3{
+    #vertical-tab-3 {
         max-width: 100%;
+    }
+    .btn-per-right,
+    .btn-per-right-1 {
+        padding-left: 53px;
     }
 }

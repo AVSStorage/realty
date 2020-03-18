@@ -13,6 +13,10 @@
             }
         }
     }
+    .choice__right-price {
+        width: 100%;
+        text-align: center;
+    }
     .rev__rev {
         font-size: 25px;
     }
@@ -126,5 +130,118 @@
         &__inner {
             flex-direction: column;
         }
+    }
+    .setting__service {
+        position: unset
+    }
+    .icon-1,
+    .icon-2 {
+        display: none
+    }
+    .name {
+        width: 100%;
+    }
+    .setting__photo {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 900px) {
+    .btn-per-right,
+    .btn-per-right-1 {
+        padding-left: 15px;
+    }
+    .btn-per-right,
+    .btn-per-right-1 {
+        font-size: 14px;
+    }
+    .setting__service {
+        position: unset
+    }
+    .icon-1,
+    .icon-2 {
+        display: none
+    }
+    .name {
+        width: 100%;
+    }
+    .order img,
+    .order-2 img,
+    .order-3 img {
+        display: none;
+    }
+    .dialog__inner-right .order a {
+        padding: 20px 46px 20px 15px;
+        font-size: 13px;
+        display: block;
+    }
+    .dialog__inner-right .order-3 a {
+        padding: 15px 11px 20px 8px;
+        font-size: 13px;
+        display: block
+    }
+    .order {
+        margin-top: 30px;
+    }
+    .order.orders-1 a {
+        padding-left: 13px;
+        padding-right: 4px;
+        display: block;
+        font-size: 13px;
+    }
+    .img__plus-add {
+        display: none;
+    }
+    .personal__right-btn-1 {
+        margin: 0;
+    }
+    .personal__right-btn-1 .img__plus-add-1 {
+        display: none;
+    }
+    .attention__left img {
+        width: 180px;
+        height: 180px;
+    }
+    .attention__footer-btn {
+        margin-left: 10px
+    }
+    .attention__right {
+        width: 66%;
+    }
+    .rev__rev {
+        font-size: 21px;
+    }
+    .attention__footer-text-inner {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .attention__footer-inner .attetion__footer-text-1,
+    .attention__footer-inner .attetion__footer-text-4 {
+        font-size: 14px;
+        padding: 0;
+    }
+    .attetion-green,
+    .attention__orange {
+        font-size: 16px;
+    }
+    .choice__right-price {
+        width: 100%;
+        text-align: center;
+    }
+    .img__setting {
+        width: 100%;
+    }
+    .setting__photo {
+        padding: 20px 7px 21px 6px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 812px) {
+    .hideObject {
+        width: 60%;
+    }
+    .choice__best {
+        width: 100%;
     }
 }
