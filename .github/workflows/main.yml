@@ -13,6 +13,7 @@ jobs:
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script:
+        script: |
           cd www/zabroniroval.ru
           git pull origin master
+          ls -al
