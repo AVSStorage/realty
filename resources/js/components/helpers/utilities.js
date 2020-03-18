@@ -5,7 +5,7 @@ function generatePaginateLinksArray(total_pages) {
         total_pages = total_pages - 1;
     }
 
-    return paginateLinksArray.sort((a,b) => a > b);
+    return paginateLinksArray.sort((a,b) => a - b);
 }
 
 

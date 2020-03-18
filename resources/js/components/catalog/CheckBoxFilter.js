@@ -35,7 +35,7 @@ const CheckBoxFilter = ({toggle}) => {
     const globalStore = useStoreContext();
 
     const { items, count} = globalStore;
-    console.log(items);
+
     const {handleCheckBoxChange, paginateCheckboxes, renderCards} = useStoreActions();
 
     return (
