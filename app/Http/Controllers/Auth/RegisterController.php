@@ -168,7 +168,7 @@ class RegisterController extends Controller
         $password = substr($random, 0, 10);
 
 
-        //$this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL: http://progect-9.network-pro.ru/');
+        $this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL: http://progect-9.network-pro.ru/');
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
