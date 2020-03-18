@@ -64,6 +64,11 @@ class User extends Authenticatable
         return $client;
     }
 
+    public function updateAvatar($path){
+        $this->avatar = $path;
+       $this->save();
+    }
+
 
     public function orders() {
         return $this->hasMany(Orders::class);

@@ -138,14 +138,6 @@ body {
     display: flex;
 }
 
-.setting__left {
-    width: 30%
-}
-
-.setting__right {
-    width: 70%;
-}
-
 .setting__photo {
     padding: 20px 50px 50px 50px;
     border: 1px solid #e8e8e8;
@@ -161,6 +153,7 @@ body {
 
 .img__setting {
     margin-top: 20px;
+    border-radius: 50%;
 }
 
 .setting__left {
@@ -247,7 +240,7 @@ input:focus {
 .icon-2 {
     position: absolute;
     top: 36px;
-    left: 310px;
+    left: 295px;
     z-index: 1;
     cursor: pointer;
 }
@@ -1146,3 +1139,7 @@ body {
 
 
 /*/Footer*/
+
+.form-settings {
+    width: 30%;
+}

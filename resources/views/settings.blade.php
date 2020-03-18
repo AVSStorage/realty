@@ -10,19 +10,11 @@
                     <div class="rev__rev">
                         Настройка профиля
                     </div>
-                    {{ Form::open(array('url' => 'dashboard/settings')) }}
+
                     <div class="setting">
                         <div class="setting__inner">
-                            <div class="setting__left">
-                                <div class="setting__photo">
-                                    <label class="setting__load">
-                                        Загрузить своё фото
-                                        {{ Form::file('avatar',  array('style'=>'display:none')) }}
-{{--                                        <input type="file" class="hidden">--}}
-                                    </label>
-                                    <a href="#"><img class="img__setting" src="{{ $settings['avatar'] }}" alt="You">
-                                </div></a>
-                            </div>
+                          <div class="form-settings" id="fileForm" data-path="{{ $settings['avatar'] }}"></div>
+                            {{ Form::open(array('url' => 'dashboard/settings')) }}
                             <div class="setting__right">
                                 <div class="setting__info">
                                         <div class="form__inner">
@@ -106,11 +98,11 @@
 
 
 
-
+                                {!! Form::close() !!}
                             </div>
                         </div>
                     </div>
-                    {!! Form::close() !!}
+
                 </div>
 
                 @include('dashboard/dashboard-panel')

@@ -13,6 +13,9 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\ImageManagerStatic as Image;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class OwnerDashboard extends Controller
@@ -378,6 +381,35 @@ class OwnerDashboard extends Controller
         return view('dashboard.owner')->with('messages',$messages)->with('counter', $counter)->with('messagesCount', count($ids) );
     }
 
+
+    public function updateSettings(Request $request){
+        $user = Auth::user();
+        $validator = $this->validate($request, [
+            'photo' => 'image|mimes:jpeg,png,jpg',
+        ]);
+
+        $image = $request->file('photo');
+        $filename = rand(1, 5).'avatar.' . $request->photo->getClientOriginalExtension();
+
+
+
+        if (!File::isDirectory(public_path('images/avatar/' . $user->getAuthIdentifier() ))) {
+
+            File::makeDirectory(public_path('images/avatar/' . $user->getAuthIdentifier().'/' ),0777,true);
+        }
+        $image_resize = Image::make($image->getRealPath());
+        $image_resize->resize(124, 124);
+
+        if (File::exists(public_path('images/avatar/' . $user->getAuthIdentifier() . '/' . $filename))){
+            File::delete(public_path('images/avatar/' . $user->getAuthIdentifier() . '/' . $filename));
+        }
+        $image_resize->save(public_path('images/avatar/' . $user->getAuthIdentifier() . '/' . $filename));
+
+        $user->updateAvatar('/images/avatar/' . $user->getAuthIdentifier() . '/' . $filename);
+
+        return ['path' => '/images/avatar/' . $user->getAuthIdentifier() . '/' . $filename];
+    }
+
     public function showObjects(){
         $user = Auth::user();
 
@@ -385,6 +417,7 @@ class OwnerDashboard extends Controller
        $services = $obj->leftJoin('object_service','objects.id','=','object_service.object_id')->where('objects.user_id','=',$user->getAttribute('id'))->whereIn('service_id', array(4,16,23, 38,21,196,204,147,205))->get(['object_id','service_id','value'])->toArray();
        $photos = $obj->with('objectPhotos')->where('objects.user_id','=',$user->getAttribute('id'))->get(['id'])->toArray();
        $objects = $user->objects()->get()->toArray();
+
 
         $metro = $user->leftJoin('objects','objects.user_id','=','users.id')->leftJoin('metro','metro.object_id','=','objects.id')->whereNotNull('metro')->get(['metro_path','metro','object_id'])->toArray();
        $seas =  $user->leftJoin('objects','objects.user_id','=','users.id')->leftJoin('sea','sea.object_id','=','objects.id')->whereNotNull('sea')->get(['sea_path','sea','object_id'])->toArray();
@@ -397,30 +430,32 @@ class OwnerDashboard extends Controller
 
                 foreach ($photos as $photo) {
                     foreach ($photo['object_photos'] as $p) {
-                        if ($object['id'] === $p['object_id']) {
+                        if ((int)$object['id'] === (int)$p['object_id']) {
                             $objects[$key]['photos']['data'][] = $p['name'];
+
                         }
                     }
 
                 }
 
                 foreach ($services as $s) {
-                    if ($s['object_id'] === $object['id']) {
+                    if ((int)$s['object_id'] === (int)$object['id']) {
                         $objects[$key]['services'][] = $s;
                     }
                 }
 
                 foreach ($metro as $m) {
-                    if ($m['object_id'] === $object['id']) {
+                    if ((int)$m['object_id'] === (int)$object['id']) {
                         $objects[$key]['metros'][] = $m;
                     }
                 }
 
                 foreach ($seas as $sea) {
-                    if ($sea['object_id'] === $object['id']) {
+                    if ((int)$sea['object_id'] === (int)$object['id']) {
                         $objects[$key]['seas'][] = $sea;
                     }
                 }
+
 
                 $objects[$key]['photos'] = array_merge($objects[$key]['photos'], [
                     'settings' => [
@@ -745,7 +780,7 @@ class OwnerDashboard extends Controller
 
     }
 
-    public function editSettings(){
+    public function editSettings(Request $request){
         $user = Auth::user();
         $settings = $user->toArray();
         $orders = new Orders();

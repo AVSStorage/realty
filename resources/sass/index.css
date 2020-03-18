@@ -168,6 +168,7 @@ body {
     right: 15px;
     z-index: 3;
 }
+
 .intro__form {
     position: relative;
     padding-top: 15px;
@@ -299,16 +300,16 @@ select {
 .icon-1 {
     position: absolute;
     top: 43%;
-    left: 305px;
+    left: 295px;
     z-index: 10;
     cursor: pointer;
 }
 
 .icon-2 {
     position: absolute;
-    top: 45%;
-    left: 527px;
-    z-index: 1;
+    top: 50%;
+    left: 295px;
+    z-index: 2;
     cursor: pointer;
 }
 
@@ -971,18 +972,17 @@ input[type='number'] {
 }
 
 #animatedModal.animated-small {
-       padding: 20px;
+    padding: 20px;
 }
 
 .animated-small {
     max-width: 400px;
     width: 100%;
-
 }
 
-@media (max-width: 576px){
+@media (max-width: 576px) {
     .animated-small {
-    max-width: 95%;
-    width:100%;
-}
+        max-width: 95%;
+        width: 100%;
+    }
 }

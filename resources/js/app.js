@@ -39,3 +39,4 @@ require('./components/ImageSliderComponent');
 require ('./components/object/CheckBox');
 require('./components/card/Application');
 require('./components/object/HideObject');
+require('./components/dashboard/UpdateFile');
