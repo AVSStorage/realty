@@ -289,6 +289,18 @@ select {
     transition: background-color .2s linear;
 }
 
+.personal__right-btn-1,
+.personal__right-btn,
+.order {
+    position: relative;
+}
+
+.personal__right-btn-1 a,
+.personal__right-btn a,
+.order a {
+    display: block
+}
+
 .example {
     padding-left: 20px;
     padding-top: 8px;

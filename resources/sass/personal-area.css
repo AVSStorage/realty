@@ -348,7 +348,7 @@ textarea {
 .personal__right-btn-1 .img__plus-add-1 {
     cursor: pointer;
     position: absolute;
-    top: 82px;
+    top: 27px;
     left: 23px;
     z-index: 1;
 }
@@ -358,7 +358,7 @@ textarea {
 }
 
 .order.orders-1 a {
-    padding-right: 40px;
+    padding-right: 35px;
 }
 
 .dialog__inner-right .order a {
