@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="center">
-    <img class="error" src="{{ asset("img/404.png") }}" alt="404">
+
+    <img class="error" src="{{ asset("img/404.png")}}" alt="404">
 </div>
 
 

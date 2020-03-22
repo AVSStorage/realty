@@ -258,6 +258,13 @@ class ObjectController extends Controller
     }
 
 
+    public function getSubTypes(){
+
+$object = new Objects();
+        return $object->leftJoin('object_types','object_types.id','=','objects.type')->leftJoin('object_subtypes','object_subtypes.type_id','=','object_types.id')->distinct()->get(['object_types.type','object_subtypes.id','name'])->groupBy('type')->toArray();
+    }
+
+
     public function uploadImage(Request $request)
     {
         // $request->photo->storeAs('public/photos',$request->num.'.'.$request->photo->getClientOriginalExtension());
@@ -274,12 +281,15 @@ class ObjectController extends Controller
 
         $image_resize = Image::make($image->getRealPath());
         $user = \Auth::user();
+
+        if (!File::isDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id  ))) {
+            File::makeDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id ),0777,true);
+        }
+
         $image_resize->save(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $filename));
         $image_resize->resize(220, 220);
 
-        if (!File::isDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id  ))) {
-            File::makeDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id ));
-        }
+
 
         $smallFilename = $request->num . '_220x220.' . $request->photo->getClientOriginalExtension();
 

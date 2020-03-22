@@ -95,39 +95,15 @@ class RegisterController extends Controller
         return '/';
     }
 
-    /**
-     * Handle a registration request for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
-    public function validateWith($validator, Request $request = null)
-    {
-        $validator->after(function ($validator) {
-            if ($this->somethingElseIsInvalid()) {
-                dd($validator->errors());
-            }
-        });
-    }
 
     public function register(Request $request)
     {
 
-        if ((int)$request->type === 1){
 
-            $this->validatorRoleClient($request->all())->validate();
-        $this->guard()->login($this->createRoleClient($request->all()));
+        $this->validatorRoleClient($request->all())->validate();
+        $this->guard()->login($this->createNewUser($request->all(), $request->get('type')));
         return redirect($this->redirectPath());
-
-        } else {
-
-
-
-            $this->validatorRoleOwner($request->all())->validate();
-            $this->guard()->login($this->createRoleOwner($request->all()));
-            return redirect($this->redirectPath());
-        }
 
 
     }
@@ -177,8 +153,12 @@ class RegisterController extends Controller
         $auth_token = getenv("TWILIO_AUTH_TOKEN");
         $twilio_number = getenv("TWILIO_NUMBER");
         $client = new \Twilio\Rest\Client($account_sid, $auth_token);
-        $client->messages->create("+". $number,
-            ['from' => $twilio_number, 'body' => $message] );
+        try {
+            $client->messages->create("+" . $number,
+                ['from' => $twilio_number, 'body' => $message]);
+        } catch (\Exception $e) {
+            Log::info($e->getMessage());
+        }
     }
 
     /**
@@ -187,14 +167,14 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function createRoleClient(array $data)
+    protected function createNewUser(array $data, $roleId)
     {
         $random = str_shuffle('abcdefghjklmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ234567890!$%^&!$%^&');
         $password = substr($random, 0, 10);
 
 
 
-        //$this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL: http://progect-9.network-pro.ru/');
+        //$this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL:'.config('app.url'));
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -202,10 +182,13 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
-        $role = new Role();
-        $user->roles()->attach('2');
+        $user->roles()->attach($roleId);
 
-       // $user->sendEmailVerificationNotification($user, $password);
+       try {
+          // $user->sendEmailVerificationNotification($user, $password);
+       } catch (\Exception $e){
+           Log::info($e->getMessage());
+       }
 
 
         return $user;

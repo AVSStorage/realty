@@ -89,9 +89,10 @@ export default function PhotoTabContainer() {
                     return item.empty === true;
                 });
                 if (obj.hasOwnProperty("errors")){
-                    dispatch({type: 'UPDATE_STATE_ITEM', name: "error", data: obj.errors.photo[0]})
+                    dispatch({type: 'UPDATE_STATE_ITEM', name: "error", data: obj.errors.photo[0] === "validation.dimensions" ? "Недопустимые размеры изображения." : "Неправильный формат файла"})
                 } else {
 
+                    dispatch({type: 'UPDATE_STATE_ITEM', name: "error", data: ""});
                     if (emptyIndex !== -1) {
                         items[emptyIndex] = {...obj, deletePhoto, setPhotoName, empty: false};
                     } else {

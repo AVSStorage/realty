@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect} from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import clsx from 'clsx';
@@ -9,6 +9,8 @@ import {makeStyles, withStyles} from "@material-ui/core";
 import {green} from '@material-ui/core/colors';
 import {RadioGroup, FormGroup, Switch} from '@material-ui/core';
 import {useStoreActions, useStoreContext} from "../../../store/store";
+import Paper from '@material-ui/core/Paper';
+import Collapse from '@material-ui/core/Collapse';
 
 
 const IOSSwitch = withStyles(theme => ({
@@ -65,6 +67,7 @@ const IOSSwitch = withStyles(theme => ({
 });
 const useStyles = makeStyles({
     root: {
+        marginLeft:0,
         '&:hover': {
             backgroundColor: 'transparent',
         },
@@ -167,11 +170,20 @@ const subs = {
 export default function ObjectTypes() {
 
     const globalState = useStoreContext();
-    let {type: selected} = globalState;
+    let {type: selected, options, loaded} = globalState;
 
     const {updateInputValue} = useStoreActions();
 
     const classes = useStyles();
+
+
+
+    useEffect(() => {
+        fetch('/object/subtypes', {     method: 'GET',
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+            }}).then(response => response.json()).then(types => { updateInputValue(types, "options") })
+    }, []);
 
 
 
@@ -195,11 +207,12 @@ export default function ObjectTypes() {
                                                         value={obj.name}
                                                         className={'d-none'}
                                                         checked={obj.id === Number(selected)}
-                                                        onChange={() => updateInputValue(subs[obj.name][0].id, 'type')}
+                                                        onChange={(evt) => {evt.stopPropagation();  updateInputValue( loaded ? false : options[obj.name][0].id, 'loaded')}}
                                                     />
                                                 }
                                             />
                                         }
+
                                         label={<div className="photo__item">
                                             <div className="photo-items">
                                                 <a href="#"><img className="photo" src={`/${obj.image}`} alt=""/></a>
@@ -210,9 +223,10 @@ export default function ObjectTypes() {
                                             </div>
                                         </div>}
                                     />
-                                    <div className={"subs-div-column"}>
-                                        {subs[obj.name].map(newObject => (
-                                            <div key={newObject.id}>
+                                    <Collapse in={options[obj.name][0].id === loaded}>
+                                    <div className={`subs-div-column`}>
+                                        {options[obj.name].map(newObject => (
+                                            <div  key={newObject.id}>
                                                 <FormControlLabel
                                                     key={index}
                                                     className={'subs'}
@@ -250,6 +264,7 @@ export default function ObjectTypes() {
                                             </div>
                                         ))}
                                     </div>
+                                    </Collapse>
                                 </div>
 
                             ))

@@ -2,8 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\User;
 use Faker\Guesser\Name;
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -108,6 +112,25 @@ Pellentesque a eros massa. Curabitur gravida vitae elit eu eleifend. Quisque ac 
             'email' => $user->email
         ])->assertSessionHasErrors('phone_number');
 
+
+
+
+    }
+
+    public function test_send_verification_email_when_registered()
+    {
+
+        $user = factory(User::class)->make([
+            'password' => bcrypt($password = 'i-love-laravel'),
+
+        ]);
+
+
+        $this->post('/register?type=1', [
+            'name' => $user->name,
+            'phone_number' => $user->phone_number,
+            'email' => $user->email
+        ]);
 
 
 

@@ -28,6 +28,8 @@ Route::get('/objects/objects', 'Ajax\ObjectController@sendObjects')->middleware(
 Route::get('/objects/filters', 'Ajax\ObjectController@sendFilters')->middleware(\App\Http\Middleware\OnlyAjax::class);
 Route::get('/objects/images', 'Ajax\ObjectController@sendImages')->middleware(\App\Http\Middleware\OnlyAjax::class);
 Route::post('/objects/photo', 'Ajax\ObjectController@uploadImage')->middleware(\App\Http\Middleware\OnlyAjax::class);
+Route::get('/object/subtypes', 'Ajax\ObjectController@getSubTypes')->middleware(\App\Http\Middleware\OnlyAjax::class);
+
 Route::get('/objects/objects/max', 'Ajax\ObjectController@sendMaxObjectCount')->middleware(\App\Http\Middleware\OnlyAjax::class);
 Route::post('/objects/hide/{object_id}', 'Ajax\ObjectController@hideObject')->middleware(\App\Http\Middleware\OnlyAjax::class);
 Route::post('/objects/update/prepay', 'Ajax\ObjectController@updatePrepay')->middleware(\App\Http\Middleware\OnlyAjax::class);

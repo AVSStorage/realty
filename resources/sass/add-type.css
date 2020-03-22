@@ -27,7 +27,18 @@ body {
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
 
+
+.subs .MuiFormControlLabel-root {
+    margin-left:0;
+}
+
+.subs .MuiTypography-body1 {
+width:100%;
+}
 /*Container*/
 
 .container {

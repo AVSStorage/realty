@@ -17,7 +17,36 @@ export default function ObjectTypeTabContainer() {
             coords,
             metros: distance.metros.length,
             seas: distance.seas.length,
-            ymaps: {}
+            ymaps: {},
+            loaded: false,
+            options: {
+
+                'Гостиница':
+                    [
+                        {id: 1, name: 'Отель'}, {id: 2, name: 'Гостиница'}, {id: 3, name: 'Гостевой дом'}, {
+                        id: 5,
+                        name: 'Мини гостиница'
+                    }
+                    ]
+                ,
+                'Квартира, апартаменты':
+                    [{id: 6, name: 'Отель эконом-класс'}, {id: 7, name: 'Эллинг по номерам'}, {
+                        id: 8,
+                        name: 'База отдыха'
+                    }, {id: 9, name: 'Тур база'}]
+                ,
+                'Дом, коттедж, эллинг':
+                    [{id: 10, name: 'Отель эконом-класс'}, {id: 11, name: 'Эллинг по номерам'}, {
+                        id: 12,
+                        name: 'База отдыха'
+                    }, {id: 13, name: 'Тур база'}]
+                ,
+                'Комната':
+                    [{id: 14, name: 'Санаторий'}, {id: 15, name: 'Пансионат'}, {id: 16, name: 'Хостел'}, {
+                        id: 17,
+                        name: 'Кровать и завтрак'
+                    }]
+            }
         }} actions={(dispatch) => ({
             updateInputValue: (value, type) => {
                 dispatch({type: "UPDATE_INPUT", name: type, data: value});

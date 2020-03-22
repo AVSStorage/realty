@@ -213,8 +213,8 @@
                 <div class="modal__title">
                     Укажите Ваши контакты
                 </div>
-                {!! Form::model( \Auth::user(), array('route' => array('register','type' => 1),  'method' => 'post')) !!}
-                <input type="hidden" name="type" value="1">
+                {!! Form::model( \Auth::user(), array('route' => array('register','type' => 2),  'method' => 'post')) !!}
+
                 <div class="modal__form">
                     <div class="form__modal-inner">
                         <div class="form__box-modal">
@@ -238,11 +238,12 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    {{Form::submit('Продолжить',['class' => 'fancy__btn'])}}
+                    {{Form::submit('Продолжить как клиент',['class' => 'fancy__btn mb-3'])}}
+                    {{Form::submit('Продолжить как владелец',['class' => 'fancy__btn', 'formaction' => '/register?type=1'])}}
 {{--                    <a href="client-area.html" class="fancy__btn">Продолжить</a>--}}
                 </div>
                 <div class="fancy__remember d-flex">
-                <label class="d-flex align-items-center"><input type="checkbox" class="col-2" checked>
+                <label class="d-flex align-items-center"><input type="checkbox" class="col-2"  checked required>
                     <span class="col-10 ml-2">Я согласен на обработку <span class="span__remember">персональных данных</span> и
                     принимаю условия <span class="span__remember">пользовательского соглашения</span></span></label>
 
@@ -338,12 +339,13 @@
 
                     <a style="display:block" data-fancybox data-animation-duration="800" data-src="#login" href="javascript:;" href="#" class="change__client">Вход</a>
                     <div class="reg">
-                        <button style="background-color: transparent;border:none" id="registrate" class="change__client"> Регистрация </button>
+                        <a data-fancybox data-animation-duration="800" data-src="#animatedModal" href="javascript:;" href="#" class="change__client">Регистрация</a>
+{{--                        <button style="background-color: transparent;border:none" id="registrate" class="change__client"> Регистрация </button>--}}
                     </div>
-                    <div class="change__reg">
-                        <a data-fancybox data-animation-duration="800" data-src="#animatedModal" href="javascript:;" href="#" class="change__client">Клиент</a>
-                        <a data-fancybox data-animation-duration="800" data-src="#owner" href="javascript:;" href="#" class="change__main">Владелец</a>
-                    </div>
+{{--                    <div class="change__reg">--}}
+{{--                    --}}
+{{--                        <a data-fancybox data-animation-duration="800" data-src="#owner" href="javascript:;" href="#" class="change__main">Владелец</a>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

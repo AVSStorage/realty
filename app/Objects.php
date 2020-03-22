@@ -28,6 +28,11 @@ class Objects extends Model
         'type' => 'int',
     ];
 
+    public function types() {
+        return $this->hasMany(ObjectTypes::class, 'id', 'type');
+    }
+
+
     public function objectPhotos() {
        return $this->hasMany(ObjectsPhoto::class,'object_id');
     }
