@@ -213,7 +213,7 @@
                 <div class="modal__title">
                     Укажите Ваши контакты
                 </div>
-                {!! Form::model( \Auth::user(), array('route' => array('register','type' => 1))) !!}
+                {!! Form::model( \Auth::user(), array('route' => array('register','type' => 1),  'method' => 'post')) !!}
                 <input type="hidden" name="type" value="1">
                 <div class="modal__form">
                     <div class="form__modal-inner">

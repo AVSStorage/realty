@@ -246,6 +246,17 @@ class ObjectController extends Controller
         return response()->json(['objects' => $data, 'types' => $types, 'states' => $states, 'calendarData' => $calendarData, 'user' => $user->getAuthIdentifier(), 'linkId' => (int)$max + 1]);
     }
 
+    public function sortList(Request $request){
+        $objects = new Objects();
+        return $objects->where('city','like','%'.$request->json()->get('input').'%' )->groupBy('city')->get(['id','city'])->unique('city')->toArray();
+
+    }
+
+    public function sendInfo(){
+        $objects = new Objects();
+        return $objects->groupBy('city')->get(['id','city'])->unique('city')->toArray();
+    }
+
 
     public function uploadImage(Request $request)
     {

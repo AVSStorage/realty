@@ -85,6 +85,11 @@ Route::get('/verify', 'VerifyController@show')->name('verify');
 Route::post('/verify', 'VerifyController@verify')->name('verify');
 Auth::routes(['verify' => true]);
 
+Route::get('/register', function () {
+   // return redirect('/');
+})->name('get_register');
+
+Route::post('/register', 'Auth\RegisterController@register')->name('register');
 
 Route::get('/dashboard', 'OwnerDashboard@show')->name('dashboard');
 Route::get('/dashboard/messages/{object_id}', 'OwnerDashboard@showObjectDialogs');
@@ -115,3 +120,7 @@ Route::post('/admin/panel/objects','AdminController@sortObjects');
 Route::post('/admin/panel','AdminController@sort');
 Route::get('/admin/panel/users/{user_id}','AdminController@getUser')->name('adminUsers');
 Route::get('admin/messages/edit/{id}/{user_id}/{object_id}', 'AdminController@editMessages');
+
+
+Route::post('/api/info','Ajax\ObjectController@sortList')->middleware(\App\Http\Middleware\OnlyAjax::class);
+Route::get('/api/info','Ajax\ObjectController@sendInfo')->middleware(\App\Http\Middleware\OnlyAjax::class);

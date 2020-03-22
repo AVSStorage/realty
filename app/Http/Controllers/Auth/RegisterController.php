@@ -44,7 +44,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
     /**
      * Get a validator for an incoming registration request.
      *
@@ -56,8 +55,24 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone_number' => 'required|size:11|unique:users'
+            'phone_number' => 'required|size:11|unique:users|regex:/^(7)/'
         ]);
+    }
+
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'Поле имени является обяхательным',
+            'email.required'  => 'Поле почта является обязательным',
+            'phone_number.size' => 'Количество символов должно быть равно 11',
+            'phone_number.regex' => 'Маска телефонного номера начинается с 7'
+        ];
     }
 
 
@@ -87,8 +102,18 @@ class RegisterController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function validateWith($validator, Request $request = null)
+    {
+        $validator->after(function ($validator) {
+            if ($this->somethingElseIsInvalid()) {
+                dd($validator->errors());
+            }
+        });
+    }
+
     public function register(Request $request)
     {
+
         if ((int)$request->type === 1){
 
             $this->validatorRoleClient($request->all())->validate();
@@ -168,7 +193,8 @@ class RegisterController extends Controller
         $password = substr($random, 0, 10);
 
 
-        $this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL: http://progect-9.network-pro.ru/');
+
+        //$this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL: http://progect-9.network-pro.ru/');
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -179,7 +205,8 @@ class RegisterController extends Controller
         $role = new Role();
         $user->roles()->attach('2');
 
-        $user->sendEmailVerificationNotification($user, $password);
+       // $user->sendEmailVerificationNotification($user, $password);
+
 
         return $user;
     }

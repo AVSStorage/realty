@@ -998,3 +998,8 @@ input[type='number'] {
         width: 100%;
     }
 }
+
+.reserver,
+.cett {
+    border: none;
+}

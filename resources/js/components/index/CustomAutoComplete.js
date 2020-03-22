@@ -4,25 +4,11 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import parse from 'autosuggest-highlight/parse';
 import throttle from 'lodash/throttle';
+import match from "autosuggest-highlight/match";
 
-
-function loadScript(src, position, id) {
-    if (!position) {
-        return;
-    }
-
-    const script = document.createElement('script');
-    script.setAttribute('async', '');
-    script.setAttribute('id', id);
-    script.src = src;
-    position.appendChild(script);
-}
-
-const autocompleteService = { current: null };
 
 const useStyles = makeStyles(theme => ({
     icon: {
@@ -35,48 +21,46 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
     const classes = useStyles();
     const [inputValue, setInputValue] = React.useState('');
     const [options, setOptions] = React.useState([]);
-    const loaded = React.useRef(false);
 
-    if (typeof window !== 'undefined' && !loaded.current) {
-        if (!document.querySelector('#google-maps')) {
-            loadScript(
-                'https://maps.googleapis.com/maps/api/js?key=AIzaSyBwRp1e12ec1vOTtGiA4fcCt2sCUS78UYc&libraries=places',
-                document.querySelector('head'),
-                'google-maps',
-            );
-        }
-
-        loaded.current = true;
-    }
 
     const handleChange = event => {
         setInputValue(event.target.value);
     };
 
-    const fetch = React.useMemo(
+    const fetchApi = React.useMemo(
         () =>
             throttle((input, callback) => {
-                autocompleteService.current.getPlacePredictions(input, callback);
+                fetch('/api/info', {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: "POST",
+                    body: JSON.stringify(input)
+                }).then(response => response.json()).then(callback)
             }, 200),
         [],
     );
 
     React.useEffect(() => {
-        let active = true;
+        fetch('/api/info', {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).then(response => response.json()).then(result => setOptions(result));
+    },[]);
 
-        if (!autocompleteService.current && window.google) {
-            autocompleteService.current = new window.google.maps.places.AutocompleteService();
-        }
-        if (!autocompleteService.current) {
-            return undefined;
-        }
+
+    React.useEffect(() => {
+        let active = true;
 
         if (inputValue === '') {
             setOptions([]);
             return undefined;
         }
 
-        fetch({ input: inputValue }, results => {
+        fetchApi({ input: inputValue }, results => {
             if (active) {
                 setOptions(results || []);
             }
@@ -85,22 +69,22 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
         return () => {
             active = false;
         };
-    }, [inputValue, fetch]);
+    }, [inputValue, fetchApi]);
+
 
     return (
 
         <Autocomplete
             id="google-map-demo"
             style={{ width: width ? 220 : "100%" }}
-            getOptionLabel={option => (typeof option === 'string' ? option : option.description)}
+            getOptionLabel={option => option.city}
             filterOptions={x => x}
             options={options}
             className="automplete"
             autoComplete
             includeInputInList
             freeSolo
-            value={ { description : value.toString()}}
-
+            value={ { city : value.toString()}}
             disableOpenOnFocus
             renderInput={params => (
                 <TextField
@@ -109,16 +93,15 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
                     variant="outlined"
                     fullWidth
                     error={validate}
-
-                    onChange = {(data) => getInputValue(data.target.value)}
+                    inputProps= {{...params.inputProps,
+                        autoComplete: 'new-password'}}
+                    onChange = {(data) => {getInputValue(data.target.value);  setInputValue(data.target.value)}}
                 />
             )}
             renderOption={option => {
-                const matches = option.structured_formatting.main_text_matched_substrings;
-                const parts = parse(
-                    option.structured_formatting.main_text,
-                    matches.map(match => [match.offset, match.offset + match.length]),
-                );
+                const matches = match(option.city, inputValue);
+                const parts = parse(option.city, matches);
+
 
                 return (
                     <Grid container alignItems="center">
@@ -132,9 +115,6 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
                 </span>
                             ))}
 
-                            <Typography variant="body2" color="textSecondary">
-                                {option.structured_formatting.secondary_text}
-                            </Typography>
                         </Grid>
                     </Grid>
                 );

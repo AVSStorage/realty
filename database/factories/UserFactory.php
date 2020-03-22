@@ -20,6 +20,7 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
+        'phone_number' => $faker->unique()->randomNumber(5).'678910',
         'email_verified_at' => now(),
         'password' => \Illuminate\Support\Facades\Hash::make(123456), // password
         'remember_token' => Str::random(10),
