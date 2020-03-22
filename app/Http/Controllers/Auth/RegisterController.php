@@ -174,7 +174,7 @@ class RegisterController extends Controller
 
 
 
-        //$this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL:'.config('app.url'));
+        $this->sendMessage($data['phone_number'],'Вы зарегистрированы на сайте Zabroniroval.ru.Ваш пароль для входа '.$password.'. URL:'.config('app.url'));
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -185,7 +185,7 @@ class RegisterController extends Controller
         $user->roles()->attach($roleId);
 
        try {
-          // $user->sendEmailVerificationNotification($user, $password);
+           $user->sendEmailVerificationNotification($user, $password);
        } catch (\Exception $e){
            Log::info($e->getMessage());
        }
