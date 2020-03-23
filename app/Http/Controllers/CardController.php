@@ -23,9 +23,10 @@ class CardController extends Controller
 
         $items = $model
             ->where('objects.id', '=', $id)
-            ->select('string', 'housing', 'house', 'type', 'objects.id', 'coordinateX', 'coordinateY', "city", "country", "region", "area")
+            ->select('string', 'housing', 'house', 'type', 'objects.id', 'coordinateX', 'coordinateY', "city", "country", "region", "area",'user_id')
             ->get()
             ->toArray();
+
 
 
         $addServices = $model
@@ -50,7 +51,7 @@ class CardController extends Controller
         $photos = $model
             ->leftJoin('object_photos', 'object_id', '=', 'objects.id')
             ->where('objects.id', '=', $id)
-            ->select('name')
+            ->select('name','path','extension','description')
             ->get()
             ->toArray();
 
@@ -173,6 +174,7 @@ class CardController extends Controller
 
         ];
         $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[ (int)$items[0]["type"] - 1] ."</span> › <span class=\"crop__span\">".$objects["key"]."</span></div>";
+
 
 
         $title = "Снять ".$types[ (int)$items[0]["type"] - 1]. " в городе " . $items[0]["city"];

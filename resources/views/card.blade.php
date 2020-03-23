@@ -56,7 +56,7 @@
                         </div>
                         <div class="slider__main">
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
@@ -65,7 +65,7 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
@@ -74,7 +74,7 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
@@ -83,7 +83,7 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
@@ -92,7 +92,7 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
@@ -101,7 +101,7 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
@@ -110,27 +110,13 @@
                             </div>
 
                             <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">
+                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
                                     <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
                                     <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
                                     <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
                                     <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
                                 </a>
                             </div>
-
-
-{{--                            @if (!empty($photos))--}}
-{{--                                @foreach ($photos as $photo)--}}
-{{--                                    <div class="slider">--}}
-{{--                                        <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" href="javascript:;" class="photo">--}}
-{{--                                            <img src="{{ asset('img/choice/'.$photo['name']) }}" alt="Room" class="main__photo" width="870" height="592">--}}
-{{--                                            <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">--}}
-{{--                                            <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>--}}
-{{--                                            <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">--}}
-{{--                                        </a>--}}
-{{--                                    </div>--}}
-{{--                                @endforeach--}}
-{{--                            @endif--}}
 
                         </div>
                         <div class="main__room">
@@ -147,55 +133,6 @@
                                     </div>
                                     @endforeach
                                 @endif
-
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="slider">--}}
-{{--                                <div class="photo">--}}
-{{--                                    <img src="{{ asset('img//photo/3.png') }}" alt="Room" class="main__photo">--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                         </div>
 
                         <div class="center d-none d-sm-block">
@@ -207,14 +144,6 @@
                         <div class="main__service-inner">
 
                                 @isset ($icons[0])
-{{--                            <div class="main__service-item">--}}
-{{--                                <div class="main__service">--}}
-{{--                                    <img src="{{ asset('img/photo/10.png') }}" alt="service">--}}
-{{--                                    <div class="main__much">--}}
-{{--                                        1 комната--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             @if ((int)$icons[0])
                                     <div class="main__service-item">
                                         <div class="main__service">
@@ -274,35 +203,6 @@
                                 </div>
                                         @endif
                                             @endisset
-
-
-
-
-{{--                            <div class="main__service-item">--}}
-{{--                                <div class="main__service">--}}
-{{--                                    <img src="{{ asset('img//photo/13.png') }}" alt="service">--}}
-{{--                                    <div class="main__much">--}}
-{{--                                        4 гостей--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="main__service-item">--}}
-{{--                                <div class="main__service">--}}
-{{--                                    <img src="{{ asset('img/photo/15.png') }}" alt="service">--}}
-{{--                                    <div class="main__much">--}}
-{{--                                        до моря--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="main__service-item">--}}
-{{--                                <div class="main__service">--}}
-{{--                                    <img src="{{ asset('img//photo/16.png') }}" alt="service">--}}
-{{--                                    <div class="main__much">--}}
-{{--                                        до метро--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
 
 
                         </div>  <!-- /main__service-inner -->
@@ -604,485 +504,18 @@
                                            {{$key}}
                                         </div>
                                         <div class="main__inner-price">
-                                        @foreach( $items as $itemKey => $item)
+                                        @foreach( $items as $itemKey => $itemValue)
 
 
                                             <div class="main__{{ $itemKey % 2 === 0 ? 'left' : 'right' }}-price">
-                                                <div class="main-text">{{ $item['name'] }}</div>
-{{--                                                <div class="main--{{(int)$item['value'] ? 'yes' : 'no'}}">{{ (int)$item['value'] ? 'да' : 'нет'}}</div>--}}
+                                                <div class="main-text">{{ $itemValue['name'] }}</div>
                                             </div>
-{{--                                            <div class="main__right-price">--}}
-{{--                                                <div class="main--text">Безналичный</div>--}}
-{{--                                                <div class="main--no">нет</div>--}}
-{{--                                            </div>--}}
+
 
                                         @endforeach
                                         </div>
                                     </div>
                                     @endforeach
-{{--                                <div class="main__price">--}}
-{{--                                    <div class="main-price">--}}
-{{--                                        Принимается оплата--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__inner-price">--}}
-{{--                                        <div class="main__left-price">--}}
-{{--                                            <div class="main--text">Наличными</div>--}}
-{{--                                            <div class="main--yes">да</div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="main__right-price">--}}
-{{--                                            <div class="main--text">Безналичный</div>--}}
-{{--                                            <div class="main--no">нет</div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-
-{{--                                    <div class="main__inner-price">--}}
-{{--                                        <div class="main__left-price">--}}
-{{--                                            <div class="main--text">Принимаются к оплате карты</div>--}}
-{{--                                            <div class="main--yes">да</div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="main__right-price">--}}
-{{--                                            <div class="main--text">Отчетные документы</div>--}}
-{{--                                            <div class="main--no">нет</div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main-price">--}}
-{{--                                    Услуги за дополнительную плату--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Размещение с животными</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Трансфер</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main-price">--}}
-{{--                                    Правила проживания--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main--text">Проживания с детьми</div>--}}
-{{--                                        <div class="main--yes">разрешено</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main--text">Вечеринки</div>--}}
-{{--                                        <div class="main--no">запрещено</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main--text">Животные</div>--}}
-{{--                                        <div class="main--yes">разрешено</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main--text">Курение</div>--}}
-{{--                                        <div class="main--no">запрещено</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main--text">Прием гостей</div>--}}
-{{--                                        <div class="main--yes">разрешено</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main--text">Проведение свадеб и торжеств</div>--}}
-{{--                                        <div class="main--no">запрещено</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Оснащение жилья--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Постельное белье</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Кондиционер</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Беспроводной интернет Wi-Fi</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Маскитная сетка</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Газовый водонагреватель</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Сейф</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Горячая вода постоянно</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Стиральная машина</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Гардеробная</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Сушилка для белья</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Гостинный уголок</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Утюг с гладильной доской</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Диван</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Центральное отопление</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Диван-кровать</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Чистящие средствам</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Домофон</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Шкаф</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Ковровое покрытие</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Панорамный вид</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Тип питания--}}
-{{--                                </div>--}}
-{{--                                <div class="main__left-price">--}}
-{{--                                    <div class="main-text-1">Сообственная кухня</div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main-price">--}}
-{{--                                    Кухонное оборудование--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Газовая или электроплита</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Посуда и принадлежности</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Духовка</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Тостер</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Кофемашина</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Столовые приборы</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Фильтр для воды</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Кухонный гарнитур</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Микроволновая печь</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Холодильник</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Морозильник</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Электрический чайник</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__left-price">--}}
-{{--                                    <div class="main-text">Обеденный стол</div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main-price">--}}
-{{--                                    Для детей--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Детский стульчик кроватка</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Детская кроватка</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Горшок</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Кровать-манеж</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main-price">--}}
-{{--                                    Доступность жилья--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Лифт</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Трансфер</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Парковка--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Подземный паркинг</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Бесплатная неохроняемая</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">На огороженной территории</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Парковка круглосуточная</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__left-price">--}}
-{{--                                    <div class="main-text">Рядом с домом</div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Оснащение территории--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Закрытый двор</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Обеденная зона на улице</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Огороженная территория</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Беседка</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Детские качели</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Пляжный зонт</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Парковка</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Веранда</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Игровая площадка</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Садовая мебель</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Барбекю</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Терраса</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Зеленные насаждения</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Уличная мебель</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__left-price">--}}
-{{--                                    <div class="main-text">Бассейн</div>--}}
-{{--                                </div>--}}
-
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Оснащение территории--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Закрытый двор</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Обеденная зона на улице</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Огороженная территория</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Беседка</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Детские качели</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Пляжный зонт</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Инфраструктура и досуг рядом--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">SPA-центр</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Кинотеатр</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Баня</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Набережная</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Остановка общественного транспорта</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Ночной клубт</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Жильё находится в частном секторе</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Парк аттракционов</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main-price">--}}
-{{--                                    Пляж--}}
-{{--                                </div>--}}
-{{--                                <div class="main__inner-price">--}}
-{{--                                    <div class="main__left-price">--}}
-{{--                                        <div class="main-text">Песчанный</div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="main__right-price">--}}
-{{--                                        <div class="main-text">Песчано-галечный</div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-
-
-{{--                                <div class="main__left-price">--}}
-{{--                                    <div class="main-text">Оборудованный бесплатный</div>--}}
-{{--                                </div>--}}
 
                          </div>
 
@@ -1100,109 +533,19 @@
                     </div>  <!-- MAIN LEFT INNER -->
                 </div>
                 <div data-disable="{{ $disable }}" data-locking="{{ json_encode($locking) }}" data-dateFrom="{{ date('D M d Y H:i:s',strtotime($occupation['dateFrom'])).' GMT+0300 (Москва, стандартное время)' }}" data-dateTo="{{ date('D M d Y H:i:s',strtotime($occupation['dateTo'])).' GMT+0300 (Москва, стандартное время)'}}" data-days="{{$occupation['min_days']}}" data-price="{{ $addService[2]['value'] }}" data-minDate="{{ date('D M d Y H:i:s',strtotime($occupation['days'])).' GMT+0300 (Москва, стандартное время)' }}" id="cardFilter"></div>
-{{--                <div class="main__right">--}}
-{{--                    <div class="main__right-inner">--}}
-{{--                        <div class="main__right-title">--}}
-{{--                            Моя поездка--}}
-{{--                        </div>--}}
-{{--                        <div class="main__right-text">--}}
-{{--                            Регион, город, место--}}
-{{--                        </div>--}}
-
-{{--                        <form>--}}
-{{--                            <div class="main__right-form">--}}
-{{--                                <label>--}}
-{{--                                    <input class="main--form" type="text" placeholder="Ялта">--}}
-{{--                                    <img class="main--form__img" src="{{ asset('img/gps.png') }}" alt="gps">--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-
-{{--                        <div class="main__right-text">--}}
-{{--                            Дата заезда--}}
-{{--                        </div>--}}
-
-{{--                        <form>--}}
-{{--                            <div class="main__right-form">--}}
-{{--                                <label>--}}
-{{--                                    <input class="main--form" type="text" placeholder="20 cентября 2019 г.">--}}
-{{--                                    <img class="main--form__img" src="{{ asset('img/calendar.png') }}" alt="calendar">--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-
-{{--                        <div class="main__right-text">--}}
-{{--                            Дата выезда--}}
-{{--                        </div>--}}
-
-{{--                        <form>--}}
-{{--                            <div class="main__right-form">--}}
-{{--                                <label>--}}
-{{--                                    <input class="main--form" type="text" placeholder="30 cентября 2019 г.">--}}
-{{--                                    <img class="main--form__img" src="{{ asset('img/calendar.png') }}" alt="calendar">--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-
-{{--                        <div class="main__right-text">--}}
-{{--                            Гостей--}}
-{{--                        </div>--}}
-
-{{--                        <form>--}}
-{{--                            <div class="main__right-form">--}}
-{{--                                <label>--}}
-{{--                                    <input class="main--form" type="text" placeholder="2 взрослых">--}}
-{{--                                    <img class="main--form__images" src="{{ asset('img/down.png') }}" alt="calendar">--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-
-{{--                        <form>--}}
-{{--                            <div class="main__right-form">--}}
-{{--                                <label>--}}
-{{--                                    <input class="main--form" type="text" placeholder="1 ребенок">--}}
-{{--                                    <img class="main--form__images" src="{{ asset('img/down.png') }}" alt="calendar">--}}
-{{--                                </label>--}}
-{{--                            </div>--}}
-{{--                        </form>--}}
-{{--                        <div class="main__right-ask">--}}
-{{--                            Вы путешествуете по работе?--}}
-{{--                        </div>--}}
-{{--                        <div class="main__right-qna">--}}
-{{--                            <div  class="service  main--active">--}}
-{{--                                да--}}
-{{--                            </div>--}}
-{{--                            <div  class="service  main--active">--}}
-{{--                                нет--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                    <div class="main__right-much-inner">--}}
-{{--                        <div class="main__right-much">--}}
-{{--                            1 000 руб. <span class="main--grey"> x 10 суток</span>--}}
-{{--                            <div class="main__right-money">--}}
-{{--                                10 000 руб.--}}
-{{--                            </div>--}}
-{{--                            <div class="center">--}}
-{{--                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animModal" href="javascript:;" class="main__right-btn">--}}
-{{--                                    Запрос на бронь--}}
-{{--                                </a>--}}
-{{--                            </div>--}}
-{{--                            <div class="center">--}}
-{{--                                <div class="main__right-remember">--}}
-{{--                                    <a href="#inform" onclick="openinfo('inform'); return false"><img src="{{ asset('img/info.png') }}" alt="info"></a> Предоплата 15 %--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-
-{{--                            <div class="main__right-info" id="inform" style="display: none">--}}
-{{--                                Равным образом сложившаяся структура <br>организации позволяет выполнять важные<br> задания по разработке существенных <br> финансовых и административных условий--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
             </div>
         </div>
     </div>
     <!-- /MAIN -->
+
+
+
+   @include('popup',['photos' => $photos, 'userId' => $item['user_id'], 'id' => $item['id'], 'descripttion' => $description])
+
+
+
+
+
+
 
 @endsection

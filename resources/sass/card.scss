@@ -1,13 +1,33 @@
 #map {
     width: 750px;
-    height: 450xp;
+    height: 450px;
 }
+@media (max-width: 900px) {
+    .animat__inner {
+        flex-wrap: wrap;
+    }
 
+    .animat__left {
+        width:90%;
+        margin:0 auto;
+    }
+
+    .animat__right {
+        width:100%;
+    }
+}
 @media (max-width: 767px) {
     #cardFilter {
         order: -1;
     }
+    .animat__left {
+        width:100%;
+    }
 
+
+    .animat__photos:nth-child(n+3) {
+        display: none;
+    }
     .main__left {
         padding-bottom: 20px;
     }

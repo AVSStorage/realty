@@ -1293,6 +1293,7 @@ a.fancy__btn {
 
 .animat__photo {
     position: relative;
+    max-height: 360px;
 }
 
 .animat__photos {

@@ -476,30 +476,6 @@ export default class VerticalTabs extends Component {
                         this.changeTab();
 
                     },
-                    validate : (address,filledServices, mainInfo, occupation ) => {
-                        let validItem = 100;
-                        if (Object.keys(address).length === 0) {
-                            validItem = 0
-                        } else if (filledServices.length === 0) {
-                            validItem = 1
-                        } else if (mainInfo.length === 0 || Object.keys(occupation).length === 0) {
-                            validItem = 2
-                        }
-
-
-                        if (validItem !== 100) {
-                            this.changeTab(validItem);
-                        } else {
-                            if (Object.keys(JSON.parse(this.props.tab2)).length > 0) {
-                                this.sendData(true)
-                            } else {
-                                this.sendData(false)
-                            }
-
-                        }
-
-
-                    },
                     sendData : (update, state) => {
                         let data = {};
                         data.objects = {

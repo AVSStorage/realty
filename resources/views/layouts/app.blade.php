@@ -11,11 +11,12 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.fancybox.min.js') }}" defer></script>
     <script src="{{ asset('js/jquery.magnific-popup.min.js') }}" defer></script>
     <script src="{{ asset('js/slick.min.js') }}" defer></script>
 
-    <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+
 
     <script type="text/javascript" src="{{ asset('js/jquery.suggestions.min.js') }}" ></script>
 
@@ -497,7 +498,7 @@
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/jquery.magnific-popup.min.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>
-
+<script src="{{ asset('js/simplebar.min.js') }}" ></script>
 
 <script>
 {{--    $.getScript( "{{ asset('js/jquery.suggestions.min.js') }}" )--}}
