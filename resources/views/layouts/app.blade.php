@@ -493,6 +493,7 @@
 </div>
 
     </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/jquery.fancybox.min.js"></script>
@@ -647,6 +648,13 @@
         $(this).parent().find('#collapseExample').toggleClass('d-none')
     })
 
+    $(".big").on('click', function(evt) {
+        evt.stopPropagation();
+        let image = $(this);
+    $.fancybox.open([
+        {src: image.parent().find('.main__photo').attr('src')}
+    ])
+    })
 </script>
 
 </body>
