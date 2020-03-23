@@ -63,41 +63,7 @@ $(function(){
     });
 
 
-     $(window).on('resize', function() {
-
-
-
-           $('.animat__slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        speed: 1000,
-        nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
-        prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
-  });
-
-
-
-         setTimeout(() => { $('.animat__slider').slick('refresh'); $('.animat__slider').parent().find('.preloader').addClass('hidden') }, 1000);
-
-    });
-
-      $(window).on('orientationchange', function() {
-
-
-
-           $('.animat__slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        speed: 1000,
-        nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
-        prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
-  });
-
-
-
-         setTimeout(() => { $('.animat__slider').slick('refresh'); $('.animat__slider').parent().find('.preloader').addClass('hidden') }, 1000);
-
-    });
+    $(window).on('resize orientationChange', function(event) {  $('.animat__slider').slick('reinit'); });
 
 
 //        $('.animat__slider').slick('unslick').slick('reinit').slick({
