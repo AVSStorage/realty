@@ -11,7 +11,7 @@ const ObjectTypeTab = ({saveFirstTabToState}) => {
     const globalState = useStoreContext();
 
     return (
-        <form onSubmit={() => saveFirstTabToState(globalState)}>
+        <form onSubmit={(evt) => {evt.preventDefault();saveFirstTabToState(globalState)}}>
             <div className="chara__title" id="charaTitle">
                 Тип объекта и адресс
             </div>

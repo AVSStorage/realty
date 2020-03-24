@@ -28,8 +28,8 @@ export default function CalendarTab({defaultState, loading, saveThirdTabToState,
 
 
     return (
-        <form style={{position: "relative"}} onSubmit={() => {
-            saveThirdTabToState(services, occupation)
+        <form style={{position: "relative"}} onSubmit={(evt) => {
+            evt.preventDefault();saveThirdTabToState(services, occupation)
         }}>
             <div className={`preloader ${loading ? 'active' : ''}`}>
 
