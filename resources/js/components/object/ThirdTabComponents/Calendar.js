@@ -6,7 +6,7 @@ import LabelWithCheckBox from "../components/LabelWithCheckBox"
 import {reducers} from "../../helpers/reducers";
 import {KeyboardTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
-
+import TmiPickerContainer from '../../TimePicker';
 export default function CalendarTab({defaultState, loading, saveThirdTabToState, updateThirdTabToState}) {
 
 
@@ -107,27 +107,14 @@ export default function CalendarTab({defaultState, loading, saveThirdTabToState,
                                                     {service.name}
                                                 </div>
                                                 {Number(service.id) === 206 || Number(service.id) === 209 ? (
-                                                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                                        <Fragment>
-                                                            <KeyboardTimePicker
-                                                                ampm={false}
-                                                                autoOk={true}
-                                                                minDate={new Date(2020, 2, 12, 10, 0, 0)}
-                                                                className="attraction-km"
-                                                                margin="normal"
-                                                                cancelLabel={"Закрыть"}
-                                                                required={true}
-                                                                initialFocusedDate={new Date()}
-                                                                inputProps={{
-                                                                    min: Number(service.id) === 209 ? minTime : 0,
-                                                                    className: "MuiOutlinedInput-input"
-                                                                }}
-                                                                value={!services[1].values.get(service.id) ? Number(service.id) === 209 ? maxTime : (Number(service.id) === 206 ? minTime : 0) : services[1].values.get(service.id)}
-                                                                onChange={(date) => {
-                                                                    let type = Number(service.id) === 209 ? "maxTime" : "minTime";
-                                                                    handleTimeChange(date.getTime(), service.id, 1, services, minTime, maxTime, type)
-                                                                }}
-                                                            /> </Fragment></MuiPickersUtilsProvider>) : (
+
+
+                                                    <TmiPickerContainer value={services[1].values.get(service.id)} onChange={(time, timeString) => {
+                                                        let type = Number(service.id) === 209 ? 206 : 209;
+                                                        handleTimeChange(time._d.getTime(), service.id, 1, services, type)
+                                                    }} format={"HH:mm"}/>
+
+                                                       ) : (
                                                     <TextField
                                                         value={!services[1].values.get(service.id) ? (service.id === 209 ? maxTime : "") : services[1].values.get(service.id)}
                                                         required={service.id === 204}
@@ -148,25 +135,11 @@ export default function CalendarTab({defaultState, loading, saveThirdTabToState,
                                                 {service.name}
                                             </div>
                                             {Number(service.id) === 206 || Number(service.id) === 209 ? (
-                                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                                                    <Fragment>
-                                                        <KeyboardTimePicker
-                                                            ampm={false}
-                                                            autoOk
-                                                            className="attraction-km"
-                                                            margin="normal"
-                                                            required={true}
-                                                            cancelLabel={"Закрыть"}
-                                                            inputProps={{
-                                                                min: Number(service.id) === 209 ? maxTime : (Number(service.id) === 206 ? minTime : 0),
-                                                                className: "MuiOutlinedInput-input"
-                                                            }}
-                                                            value={!services[1].values.get(service.id) ? Number(service.id) === 209 ? maxTime : (Number(service.id) === 206 ? minTime : 0) : services[1].values.get(service.id)}
-                                                            onChange={(date) => {
-                                                                let type = Number(service.id) === 209 ? "maxTime" : "minTime";
-                                                                handleTimeChange(date.getTime(), service.id, 1, services, minTime, maxTime, type)
-                                                            }}
-                                                        /></Fragment></MuiPickersUtilsProvider>) : (
+                                                <TmiPickerContainer value={services[1].values.get(service.id)} onChange={(time, timeString) => {
+                                                    let type = Number(service.id) === 209 ? 206 : 209;
+                                                    handleTimeChange(time._d.getTime(), service.id, 1, services, type)
+                                                }} format={"HH:mm"}/>
+                                                ) : (
                                                 <TextField
                                                     value={!services[1].values.get(service.id) ? (service.id === 209 ? maxTime : "") : services[1].values.get(service.id)}
                                                     required={service.id === 204}

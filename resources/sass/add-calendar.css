@@ -935,3 +935,13 @@ input.costt {
     left: 26%;
     z-index: 10;
 }
+
+.chara__km-inner .ant-picker {
+    border-radius: 4px;
+}
+
+.ant-picker .ant-picker-input > input {
+    font-size: 18px;
+
+    color: currentColor;
+}

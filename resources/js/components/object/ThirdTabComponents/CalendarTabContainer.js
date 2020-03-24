@@ -39,28 +39,23 @@ export default function CalendarTabContainer({data}) {
                 service[type].values = values;
                 dispatch({type: 'UPDATE_STATE_ITEM', name: "services", data: service});
             },
-            handleTimeChange : (evt, index, type, service, minTime, maxTime, timeType) => {
+            handleTimeChange : (evt, index, type, service, timeType) => {
                 let values = service[type].values;
                 let hours = 30*60*1000;
+                values.set(index, evt);
 
-                minTime = maxTime - evt > hours ? evt: evt - hours;
-                maxTime = evt - minTime > hours ? evt : evt + hours;
-                if (timeType === "maxTime"){
-
-                    minTime = evt - minTime > hours ? evt: minTime;
-                    values.set(206, minTime);
-                    values.set(index, evt);
+                if (timeType === 206) {
+                    if (values.get(timeType) - values.get(index) < hours) {
+                        values.set(timeType, evt + hours);
+                    }
                 } else {
-
-                    maxTime = evt - maxTime > hours ? evt : maxTime;
-                    values.set(index, evt);
-                    values.set(209, maxTime);
+                    if (values.get(index) + hours > values.get(timeType) ) {
+                        values.set(timeType, evt - hours);
+                    }
                 }
 
                 service[type].values = values;
                 dispatch({type: 'UPDATE_STATE_ITEM', name: "services", data: service});
-                dispatch({type: 'UPDATE_STATE_ITEM', name: "maxTime", data: maxTime});
-                dispatch({type: 'UPDATE_STATE_ITEM', name: "minTime", data: minTime});
             },
 
             handleTextChange : (evt, index, type, service) => {

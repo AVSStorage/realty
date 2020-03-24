@@ -16,4 +16,5 @@ jobs:
         script: |
           cd www/zabroniroval.ru
           git pull origin master
+          npm install
           ls -al
