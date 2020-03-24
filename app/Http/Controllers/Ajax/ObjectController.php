@@ -451,21 +451,25 @@ $object = new Objects();
      * @return array|\Illuminate\Database\Eloquent\Collection
      */
     public function generateSendedArray(\Illuminate\Database\Eloquent\Collection $objectData, Collection $metro, Collection $services, Collection $photos, Collection $sea){
+
         $objectData = $objectData->toBase()->groupBy('id')->map(function ($item, $key) use ($metro, $services, $photos, $sea) {
 
 
+
+           $serviceArray = $services->get($key)->mapWithKeys(function ($value) {
+               return [$value['service_id'] => $value['value']];
+           });
+
             return collect($item->get(0))->merge(['metros' => $metro->get($key)])
                 ->merge(['seas' => $sea->get($key)])
-                ->merge(['services' => $services->get($key)->mapWithKeys(function ($value) {
-                    return [$value['service_id'] => $value['value']];
-                })])
+                ->merge(['services' => $serviceArray])
                 ->merge(['photos' => $photos->get($key)->map(function ($value, $key) {
                     return collect($value)->get('name');
                 })]);
         })->values()->toArray();
 
 
-       // return $objectData;
+        return $objectData;
     }
 
     public function sendMaxObjectCount(Request $request)
