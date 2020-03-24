@@ -50,7 +50,7 @@ class Objects extends Model
     }
 
     public function getServices() {
-        return $this->rightJoin('object_service', 'object_service.object_id', '=', 'objects.id')
+        return $this->leftJoin('object_service', 'object_service.object_id', '=', 'objects.id')
             ->whereIn('service_id', array(4, 16, 23, 38, 21, 196, 204))
             ->select('value','service_id','objects.id')
             ->get();

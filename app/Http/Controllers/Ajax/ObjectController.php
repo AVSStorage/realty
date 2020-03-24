@@ -277,7 +277,7 @@ $object = new Objects();
 
         $id =  Input::get('id') !== null ? Input::get('id') : Objects::orderBy('id', "DESC")->get('id')->first()->toArray()['id'] + 1;
         $image = $request->file('photo');
-dd($request->all());
+
         $filename = $request->num . '.' . $request->photo->getClientOriginalExtension();
 
         $image_resize = Image::make($image->getRealPath());
@@ -452,6 +452,8 @@ dd($request->all());
      */
     public function generateSendedArray(\Illuminate\Database\Eloquent\Collection $objectData, Collection $metro, Collection $services, Collection $photos, Collection $sea){
         $objectData = $objectData->toBase()->groupBy('id')->map(function ($item, $key) use ($metro, $services, $photos, $sea) {
+
+
             return collect($item->get(0))->merge(['metros' => $metro->get($key)])
                 ->merge(['seas' => $sea->get($key)])
                 ->merge(['services' => $services->get($key)->mapWithKeys(function ($value) {
@@ -462,7 +464,8 @@ dd($request->all());
                 })]);
         })->values()->toArray();
 
-        return $objectData;
+
+       // return $objectData;
     }
 
     public function sendMaxObjectCount(Request $request)
@@ -481,7 +484,9 @@ dd($request->all());
         $sea = $this->getIntersectedByIdCollection($model->getSeas(),  $data['objects']);
         $photos = $this->getIntersectedByIdCollection($model->getPhotos(),  $data['objects']);
         $services = $this->getIntersectedByIdCollection($model->getServices(),  $data['objects']);
+
         $data['objects'] = $this->generateSendedArray($data['objects'],$metro, $services, $photos, $sea );
+
 
         return response()->json(['objects' => $data['objects']]);
     }

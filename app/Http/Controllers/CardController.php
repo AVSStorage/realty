@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Objects;
 use App\ObjectService;
+use App\ObjectSubTypes;
 use App\ServiceTypes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -162,23 +163,14 @@ class CardController extends Controller
             $string = '';
         }
 
-        $types = [
-            'Отель', 'Гостиница', 'Гостевой дом',
-            'Мини гостиница',
-            'Квартира, апартаменты', 'Отель эконом-класс', 'Эллинг по номерам', 'База отдыха',
-            'Тур база',
-            'Дом, коттедж, эллинг',
-            'Отель эконом-класс', 'Эллинг по номерам',
-            'База отдыха',
-            'Тур база',
-            'Комната', 'Санаторий', 'Пансионат', 'Хостел', 'Кровать и завтрак'
+        $types = ObjectSubTypes::all()->toArray();
 
-        ];
-        $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[ (int)$items[0]["type"] - 1] ."</span> › <span class=\"crop__span\">".$objects["key"]."</span></div>";
+
+        $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[ (int)$items[0]["type"] - 1]['name'] ."</span> › <span class=\"crop__span\">".$objects["key"]."</span></div>";
 
 
 
-        $title = "Снять ".$types[ (int)$items[0]["type"] - 1]. " в городе " . $items[0]["city"];
+        $title = "Снять ".$types[ (int)$items[0]["type"] - 1]['name']. " в городе " . $items[0]["city"];
         return view('card')->with('locking', $locking)->with('occupation', $occupation[0])->with('addService', $addServices)->with('description', $result)->with('item', $items[0])->with('info', $services)->with('icons', $icons)->with('photos', $photos)->with('disable', (int)$occupation[0]['user_id'] === \Auth::id())
             ->with("breadCrumbs", $breadcrums)->with("title", $title);
     }
