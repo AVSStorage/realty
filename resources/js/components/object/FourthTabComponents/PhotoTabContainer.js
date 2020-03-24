@@ -76,7 +76,7 @@ export default function PhotoTabContainer() {
                 let addedItemIndex = emptyIndex === -1 ? items.length + 1 : emptyIndex;
                 data.append('num', addedItemIndex);
 
-                console.log(addedItemIndex);
+
 
                 let param = window.location.pathname === "/add-type"  ? "" : "?id=" + window.location.pathname.split('/')[3];
                 fetch( '/objects/photo' + param ,{

@@ -29,7 +29,7 @@ export default function PhotosTab({state}) {
 
 
     return (
-        <form onSubmit={() => saveForm(state)}>
+        <form onSubmit={(evt) => {evt.preventDefault();saveForm(state)}}>
             <div className="characteristic">
                 <div className="container">
                     <div className="chara__inner">
