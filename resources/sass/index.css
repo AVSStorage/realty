@@ -941,13 +941,20 @@ a.fancy__btn {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
+    -webkit-appearance: textfield;
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
 }
 
+
+
 input[type='number'] {
-    -moz-appearance: textfield;
+    -moz-appearance: textfield !important;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
 
 .input-number {
@@ -1011,6 +1018,7 @@ input[type='number'] {
 .service.service--active-dec {
     margin-bottom: 14px !important;
 }
+
 
 
 .service--active-dec::before {

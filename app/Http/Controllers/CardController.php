@@ -40,6 +40,7 @@ class CardController extends Controller
         $addServices = $addServices->toArray();
 
 
+
         $icons = $model
             ->leftJoin('object_service', 'object_service.object_id', '=', 'objects.id')
             ->where('objects.id', '=', $id)

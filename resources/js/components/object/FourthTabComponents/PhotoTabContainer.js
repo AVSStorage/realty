@@ -36,6 +36,7 @@ export default function PhotoTabContainer() {
             validItem = 2
         }
 
+        console.log(validItem, address, filledServices, mainInfo, occupation);
 
         if (validItem !== 100) {
             changeTab(validItem);
@@ -71,6 +72,7 @@ export default function PhotoTabContainer() {
                 let emptyIndex = items.findIndex((item) => {
                     return item.empty === true;
                 });
+
                 let addedItemIndex = emptyIndex === -1 ? items.length + 1 : emptyIndex;
                 data.append('num', addedItemIndex);
 

@@ -75,11 +75,17 @@
     #objectsTypes .photo__inner .photo__item {
         width: 50%;
     }
+
+    #objectsTypes  .attraction__left {
+        padding-right: 0;
+    }
+
+    #objectsTypes .ant-picker-input,
     #objectsTypes .calendar__min-btn {
         flex-wrap: nowrap
     }
     #objectsTypes .calendar__right-input {
-        width: 90%;
+        width: 80%;
     }
     .price-tabs {
         margin: 0 !important;
@@ -97,6 +103,11 @@
     .calendar__widget-panel {
         margin-top: 20px;
     }
+
+    #objectsTypes .calendar__right-start {
+        width: auto;
+    }
+    #objectsTypes  .calendar-content,
     #objectsTypes .datepicker .MuiInputBase-root,
     #objectsTypes .datepicker .MuiInputAdornment-root {
         flex-wrap: nowrap;

@@ -647,9 +647,9 @@ body {
     margin-top: 93vh;
 }
 
-.price-tabs {
-    margin-left: 31px !important;
-}
+/*.price-tabs {*/
+/*    margin-left: 31px !important;*/
+/*}*/
 
 .calendar__right-input .datepicker {
     width: 175px;

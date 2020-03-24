@@ -277,6 +277,7 @@ $object = new Objects();
 
         $id =  Input::get('id') !== null ? Input::get('id') : Objects::orderBy('id', "DESC")->get('id')->first()->toArray()['id'] + 1;
         $image = $request->file('photo');
+dd($request->all());
         $filename = $request->num . '.' . $request->photo->getClientOriginalExtension();
 
         $image_resize = Image::make($image->getRealPath());
@@ -325,7 +326,7 @@ $object = new Objects();
         $occupation = $data['object_occupation'];
         DB::table('object_occupation')->insert(array_merge($occupation, ['object_id' => $id[0]['max']]));
         foreach ($photos as $photo) {
-            DB::table('object_photos')->insert(['object_id' => $id[0]['max'], 'name' => $photo['photo'], 'path' => $photo['value']]);
+            DB::table('object_photos')->insert(['object_id' => $id[0]['max'], 'name' => $photo['photo'], 'description' => $photo['value'],'extension' => $photo['extension'], 'path' => $photo['path'] ]);
         }
 
         foreach ($objectServices as $services) {
