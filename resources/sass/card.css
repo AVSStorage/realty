@@ -1675,3 +1675,11 @@ z-index: 101;
 color:#01be66;
 
 }
+
+@media (min-width: 1200px){
+    .slider__main .photo .main__photo {
+        min-height: 543px;
+        max-height: 544px;
+        height: 100%;
+    }
+}

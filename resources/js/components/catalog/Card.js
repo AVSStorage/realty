@@ -97,30 +97,30 @@ const Card = ({limit, days}) => {
                                     </div>
                                 </div>
                                 <div className="choice__left-info">
-                                    { types.get(Number(item.type)) === 'Гостиница' && (
+                                    { Number(item.objectType) === 1 && (
                                         <div className="choice__info-title">
-                                            { types.get(Number(item.type)) }
+                                            { item.objectName }
                                         </div>
                                     )
 
                                     }
-                                    { types.get(Number(item.type)) === 'квратира'  && (
+                                    { Number(item.objectType) === 2  && (
                                         <div className="choice__info-title">
-                                            { item.services ? `${item.services["4"]}-${services.get(4)}` : ''} { types.get(Number(item.type)) } - {item.services ? item.services["16"] : ''} м²
+                                            { item.objectName } - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 
                                     }
-                                    { (types.get(Number(item.type)) === 'Дом') && (
+                                    { (Number(item.objectType) === 3) && (
                                         <div className="choice__info-title">
-                                            { types.get(Number(item.type)) } - { `${item.services ? item.services["4"] : ''} ${item.services ? declOfNum(item.services["4"],['комната', 'комнаты', 'комнат']) : ''}`}  - {item.services ? item.services["16"] : ''} м²
+                                            { item.objectName }  - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 
                                     }
-                                    { types.get(Number(item.type)) === 'Комната' && (
+                                    { Number(item.objectType) === 4 && (
                                         <div className="choice__info-title">
-                                            { types.get(Number(item.type)) } - {item.services ? item.services["16"] : ''} м²
+                                            { item.objectName } - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 

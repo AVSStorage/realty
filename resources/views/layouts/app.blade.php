@@ -655,6 +655,13 @@
         {src: image.parent().find('.main__photo').attr('src')}
     ])
     })
+
+    $('.main__more').on('click', function() {
+        $.fancybox.open( $('.slider__main .photo .main__photo'), {
+            touch: false,
+            infobar: false
+        });
+    });
 </script>
 
 </body>

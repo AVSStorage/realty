@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\DB;
 
 class CardController extends Controller
 {
+
+    function declOfNum($index, $titles)
+    {
+        $cases = [2, 0, 1, 1, 1, 2];
+        return $titles[($index % 100 > 4 && $index % 100 < 20) ? 2 : $cases[($index % 10 < 5) ? $index % 10 : 5]];
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -24,10 +31,9 @@ class CardController extends Controller
 
         $items = $model
             ->where('objects.id', '=', $id)
-            ->select('string', 'housing', 'house', 'type', 'objects.id', 'coordinateX', 'coordinateY', "city", "country", "region", "area",'user_id')
+            ->select('string', 'housing', 'house', 'type', 'objects.id', 'coordinateX', 'coordinateY', "city", "country", "region", "area", 'user_id')
             ->get()
             ->toArray();
-
 
 
         $addServices = $model
@@ -41,7 +47,6 @@ class CardController extends Controller
         $addServices = $addServices->toArray();
 
 
-
         $icons = $model
             ->leftJoin('object_service', 'object_service.object_id', '=', 'objects.id')
             ->where('objects.id', '=', $id)
@@ -53,7 +58,7 @@ class CardController extends Controller
         $photos = $model
             ->leftJoin('object_photos', 'object_id', '=', 'objects.id')
             ->where('objects.id', '=', $id)
-            ->select('name','path','extension','description')
+            ->select('name', 'path', 'extension', 'description')
             ->get()
             ->toArray();
 
@@ -166,12 +171,11 @@ class CardController extends Controller
         $types = ObjectSubTypes::all()->toArray();
 
 
-        $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[ (int)$items[0]["type"] - 1]['name'] ."</span> › <span class=\"crop__span\">".$objects["key"]."</span></div>";
+        $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[(int)$items[0]["type"] - 1]['name'] . "</span> › <span class=\"crop__span\">" . $objects["key"] . "</span></div>";
 
 
-
-        $title = "Снять ".$types[ (int)$items[0]["type"] - 1]['name']. " в городе " . $items[0]["city"];
+        $title = "Снять " . $types[(int)$items[0]["type"] - 1]['name'] . " в городе " . $items[0]["city"];
         return view('card')->with('locking', $locking)->with('occupation', $occupation[0])->with('addService', $addServices)->with('description', $result)->with('item', $items[0])->with('info', $services)->with('icons', $icons)->with('photos', $photos)->with('disable', (int)$occupation[0]['user_id'] === \Auth::id())
-            ->with("breadCrumbs", $breadcrums)->with("title", $title);
+            ->with("breadCrumbs", $breadcrums)->with("title", $title)->with('name', $types[(int)$items[0]["type"] - 1]['name'])->with('type', $types[(int)$items[0]["type"] - 1]['type_id'])->with('prefix', $this->declOfNum((int)$addServices[3]['value'], ['комната', 'комнаты', 'комнат']));
     }
 }

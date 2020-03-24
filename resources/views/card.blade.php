@@ -18,15 +18,15 @@
     <div class="main">
         <div class="container">
             <div class="main__title">
-                @if ((int)$item['type'] === 1)
-                    Гостиница -  на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
-                @elseif ((int)$item['type'] === 2)
-                    {{$addService[0]['value']}}-комнатная квартира на ул. {{$item['string']}} -  {{$addService[1]['value']}} м²
-                @elseif ((int)$item['type'] === 3)
-                    Дом -   {{$addService[3]['value']}}-комнат  на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
-                @elseif ($item['type'] === 4)
+                @if ((int)$type === 1)
+                    {{ $name }} -  на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
+                @elseif ((int)$type === 2)
+                    {{ $name }}  на ул. {{$item['string']}} -  {{$addService[1]['value']}} м²
+                @elseif ((int)$type === 3)
+                    {{ $name }} -   {{$addService[3]['value']}}-{{ $prefix }}  на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
+                @elseif ($type === 4)
 
-                    Комната на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
+                    {{ $name }} на ул. {{$item['string']}} - {{$addService[1]['value']}} м²
                     @endif
 
             </div>
@@ -55,68 +55,26 @@
                             </svg>
                         </div>
                         <div class="slider__main">
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
+                            @if (!empty($photos))
+                                @foreach ($photos as $photo)
 
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
-                                    <img src="i{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
 
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal"  class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
+                                    <div class="slider">
+                                        <a href="#" data-fancybox data-animation-duration="800" data-fancybox-group="gallery" data-src="#animatModal"  class="photo">
+                                            @if(($photo['path'] !== '') && file_exists($photo['path'].'.'.$photo['extension']))
+                                                <img src="{{ asset( $photo['path'].'.'.$photo['extension']) }}" style="width:100%"
+                                                     alt="Room" class="main__photo">
+                                            @else
+                                                <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
+                                            @endif
+                                            <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
+                                            <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
+                                            <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
+                                        </a>
+                                    </div>
 
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
-
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
-
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="img/photo/4.png" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
-
-                            <div class="slider">
-                                <a href="#" data-fancybox data-animation-duration="800" data-src="#animatModal" class="photo">
-                                    <img src="{{ asset('img//photo/2.png') }}" alt="Room" class="main__photo">
-                                    <img src="{{ asset('img//photo/1.png') }}" alt="water-item" class="watter-item">
-                                    <a href="#"><img src="{{ asset('img//photo/4.png') }}" alt="best" class="best"></a>
-                                    <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
-                                </a>
-                            </div>
+                                @endforeach
+                            @endif
 
                         </div>
                         <div class="main__room">

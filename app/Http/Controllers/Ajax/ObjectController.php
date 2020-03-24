@@ -8,6 +8,8 @@ use App\ObjectOccupation;
 use App\Objects;
 use App\ObjectService;
 use App\ObjectsPhoto;
+use App\ObjectSubTypes;
+use App\ObjectTypes;
 use App\OccupationSurcharge;
 use App\Sea;
 use App\Service;
@@ -260,8 +262,9 @@ class ObjectController extends Controller
 
     public function getSubTypes(){
 
-$object = new Objects();
-        return $object->leftJoin('object_types','object_types.id','=','objects.type')->leftJoin('object_subtypes','object_subtypes.type_id','=','object_types.id')->distinct()->get(['object_types.type','object_subtypes.id','name'])->groupBy('type')->toArray();
+$object = new ObjectSubTypes();
+
+        return $object->leftJoin('object_types','object_types.id','=','object_subtypes.type_id')->distinct()->get(['object_types.type','object_subtypes.id','name'])->groupBy('type')->toArray();
     }
 
 
@@ -460,12 +463,16 @@ $object = new Objects();
                return [$value['service_id'] => $value['value']];
            });
 
+           $types = ObjectSubTypes::all()->toArray();
+
             return collect($item->get(0))->merge(['metros' => $metro->get($key)])
                 ->merge(['seas' => $sea->get($key)])
                 ->merge(['services' => $serviceArray])
                 ->merge(['photos' => $photos->get($key)->map(function ($value, $key) {
                     return collect($value)->get('name');
-                })]);
+                })])
+                ->merge(['objectName' => $types[$item->get(0)['type'] - 1]['name']])
+                ->merge(['objectType' => $types[$item->get(0)['type'] - 1]['type_id']]);
         })->values()->toArray();
 
 
