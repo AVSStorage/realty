@@ -289,6 +289,8 @@ $object = new ObjectSubTypes();
 
         if (!File::isDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id  ))) {
             File::makeDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id ),0777,true);
+        } else {
+            File::cleanDirectory(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id ));
         }
 
         $image_resize->save(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $filename));
