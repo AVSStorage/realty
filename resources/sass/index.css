@@ -230,6 +230,9 @@ input::placeholder {
     background-color: white;
     border-radius: 5px;
     margin-right: 5px;
+    display: flex;
+    justify-content: center;
+    padding-left: 20px !important;
 }
 
 .guests #select {
@@ -1053,4 +1056,64 @@ input[type='number']::-webkit-inner-spin-button {
 
 .animat--block {
     padding-left: 35px;
+}
+
+
+.form-width {
+    position: absolute;
+    top: 95%;
+    right: 16%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    border-radius: 4px;
+}
+
+.js-guestCountListPeopleCount {
+    padding-right: 25px;
+    list-style: none;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 25px;
+    width: 262px;
+    margin: 0;
+}
+
+.js-guestCountListPeopleCount li {
+    padding-top: 10px;
+}
+
+.js-guestCountListPeopleCount li::after {
+    content: '';
+    border-bottom: 1px solid #b0b9c3;
+    left:0;
+    position:absolute;
+    width:100%;
+    height: 1px;
+}
+.pull-left {
+    display:flex;
+}
+
+.toggle-button {
+    border: 1px solid;
+    border-radius: 3px;
+    background-color: transparent;
+    padding-left: 7px;
+    padding-right: 7px;
+    margin-right: 5px;
+}
+
+
+.pull-left  #select {
+    padding-left: 6px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding-top: 5px;
+}
+
+.js-guestCountDropdownListButtonClose {
+    width: 40%;
+    margin: 7px auto;
 }

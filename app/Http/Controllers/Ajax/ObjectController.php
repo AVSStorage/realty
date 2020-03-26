@@ -281,7 +281,8 @@ $object = new ObjectSubTypes();
         $id =  Input::get('id') !== null ? Input::get('id') : Objects::orderBy('id', "DESC")->get('id')->first()->toArray()['id'] + 1;
         $image = $request->file('photo');
 
-        $filename = $request->num . '.' . $request->photo->getClientOriginalExtension();
+        $filename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME)  .rand(1, 100) . '.' . $request->photo->getClientOriginalExtension();
+
 
         $image_resize = Image::make($image->getRealPath());
         $user = \Auth::user();
@@ -295,7 +296,7 @@ $object = new ObjectSubTypes();
 
 
 
-        $smallFilename = $request->num . '_220x220.' . $request->photo->getClientOriginalExtension();
+        $smallFilename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME) .rand(1, 100) . '_220x220.' . $request->photo->getClientOriginalExtension();
 
         $image_resize->save(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $smallFilename));
 
