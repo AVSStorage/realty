@@ -276,12 +276,13 @@ $object = new ObjectSubTypes();
             'photo' => 'image|mimes:jpeg,png,jpg|dimensions:min_width=870,min_height=532',
         ]);
 
+        $suffix = rand(1, 100);
 
 
         $id =  Input::get('id') !== null ? Input::get('id') : Objects::orderBy('id', "DESC")->get('id')->first()->toArray()['id'] + 1;
         $image = $request->file('photo');
 
-        $filename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME)  .rand(1, 100) . '.' . $request->photo->getClientOriginalExtension();
+        $filename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME)  .$suffix . '.' . $request->photo->getClientOriginalExtension();
 
 
         $image_resize = Image::make($image->getRealPath());
@@ -296,14 +297,14 @@ $object = new ObjectSubTypes();
 
 
 
-        $smallFilename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME) .rand(1, 100) . '_220x220.' . $request->photo->getClientOriginalExtension();
+        $smallFilename = pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME) .$suffix . '_220x220.' . $request->photo->getClientOriginalExtension();
 
         $image_resize->save(public_path('images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $smallFilename));
 
         return [
             'id' => (int)$request->num,
             'photo' => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $smallFilename,
-            "path" => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME).rand(1, 100),
+            "path" => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME).$suffix,
             "extension" => $request->photo->getClientOriginalExtension(),
             'description' => 'фото',
             'placeHolder' => 'Что на фото?',
