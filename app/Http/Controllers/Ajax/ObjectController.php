@@ -303,7 +303,7 @@ $object = new ObjectSubTypes();
         return [
             'id' => (int)$request->num,
             'photo' => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. $smallFilename,
-            "path" => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. (int)$request->num,
+            "path" => 'images/choice/' . $user->getAuthIdentifier() . '/' . $id . '/'. pathinfo($request->photo->getClientOriginalName(), PATHINFO_FILENAME),
             "extension" => $request->photo->getClientOriginalExtension(),
             'description' => 'фото',
             'placeHolder' => 'Что на фото?',
