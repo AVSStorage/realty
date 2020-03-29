@@ -44,35 +44,70 @@ $(function(){
 
 
 
-    $(window).on('load', function() {
+    $('a.photo').click(function(e){
 
 
-
-           $('.animat__slider').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        speed: 1000,
-        nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
-        prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
-  });
-
-
-
-         setTimeout(() => { $('.animat__slider').slick('refresh'); $('.animat__slider').parent().find('.preloader').addClass('hidden') }, 1000);
-
+        $(window).trigger('resize');
     });
 
 
-    $(window).on('resize orientationChange', function(event) {  $('.animat__slider').slick('reinit'); });
+    $('.animat__slider').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        initialSlide: 0,
+        speed: 1000,
+        asNavFor: '.animat__photos',
+        nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
+        prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
+    });
+
+    $('.animat__photos').slick({
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        speed: 1000,
+        infinite: false,
+        asNavFor: '.animat__slider',
+        focusOnSelect: true,
+        nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
+        prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
+    });
+
+    //
+    // $('div[data-slide]').click(function(e) {
+    //     e.preventDefault();
+    //     var slideno = $(this).data('slide');
+    //     console.log(slideno);
+    //
+    //     $('.animat__photos').slick('slickGoTo', slideno + 1)
+    // });
 
 
-//        $('.animat__slider').slick('unslick').slick('reinit').slick({
-//         slidesToShow: 1,
-//         slidesToScroll: 1,
-//         speed: 1000,
-//         nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
-//         prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
-//   });
+
+
+  //
+  //          $('.animat__slider').slick({
+  //       slidesToShow: 1,
+  //       slidesToScroll: 1,
+  //       speed: 1000,
+  //              asNavFor: '.animat__photos',
+  //       nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
+  //       prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
+  // });
+  //
+  //   $('.animat__photos').slick({
+  //       slidesToShow: 6,
+  //       slidesToScroll: 1,
+  //       speed: 1000,
+  //       asNavFor: '.animat__slider',
+  //       focusOnSelect: true,
+  //       nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
+  //       prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
+  //   });
+
+
+    //$(window).on('resize orientationChange', function(event) {  $('.animat__slider').slick('reinit');});
+
+
 
 });
 
@@ -82,13 +117,13 @@ $(function(){
 
 $(function(){
 
-               $('.slider__main').on('init', function(event, slick){
+ $('.slider__main').on('init', function(event, slick){
     // event subscriber goes here
 
            $('.preloader').removeClass('active');
 });
 
-                              $('.slider__main-2').on('init', function(event, slick){
+$('.slider__main-2').on('init', function(event, slick){
     // event subscriber goes here
 
            $('.preloader').removeClass('active');
@@ -108,10 +143,13 @@ $(function(){
         slidesToScroll: 1,
         speed: 1000,
         asNavFor: '.slider__main',
+           infinite:false,
         focusOnSelect: true,
         nextArrow: '<button type="button" class="choice__btn  choice--next"></button>',
         prevArrow: '<button type="button" class="choice__btn  choice--prev"></button>'
   });
+
+
 
 });
 

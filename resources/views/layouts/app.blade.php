@@ -656,12 +656,8 @@
     ])
     })
 
-    $('.main__more').on('click', function() {
-        $.fancybox.open( $('.slider__main .photo .main__photo'), {
-            touch: false,
-            infobar: false
-        });
-    });
+
+
 </script>
 
 </body>

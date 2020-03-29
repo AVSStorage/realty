@@ -27,11 +27,12 @@
             </div>
                 <div class="animat__slider">
 
+
                     @if (!empty($photos))
                         @foreach ($photos as $photo)
 
                             <div>
-                            <div class="animat__photo">
+                            <div id="big-icon-{{ $loop->iteration }}" class="animat__photo">
 
 
                                 @if(($photo['path'] !== '') && file_exists($photo['path'].'.'.$photo['extension']))
@@ -45,7 +46,7 @@
                                 <img src="{{ asset("img/photo/1.png") }}" alt="water-item" class="watter-item">
 
                             </div>
-                            <div class="main__room animat__room">
+                            <div class="main__room animat__room {{ $photo['description'] !== '' ? '' : 'mt-5' }}">
                                 {{ $photo['description'] }}
                             </div>
                             </div>
@@ -54,9 +55,9 @@
                 </div>
                 <div class="animat__photos">
                     @if (!empty($photos))
-                        @foreach (array_slice($photos,0, 6) as $photo)
-                            <div class="slider">
-                                <div class="photo" style="padding:0;margin:0;margin-left:5px;margin-right: 5px">
+                        @foreach ($photos as $photo)
+                            <div data-slide="{{ $loop->iteration   }}" id="small-icon-{{ $loop->iteration }}" class="slider">
+                                <div  style="padding:0;margin: 0 5px;">
                                     <img src="{{ asset($photo['name']) }}" width="100" height="100" alt="Room"
                                          class="main__photo">
                                 </div>

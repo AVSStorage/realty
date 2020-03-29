@@ -1105,12 +1105,17 @@ input[type='number']::-webkit-inner-spin-button {
     margin-right: 5px;
 }
 
+.toggle-button.active {
+    background-color: #268d5d;
+    color: white;
+}
 
 .pull-left  #select {
     padding-left: 6px;
     border: 1px solid;
     border-radius: 3px;
-    padding-top: 5px;
+    padding-top: 7px;
+    padding-bottom: 2px;
 }
 
 .js-guestCountDropdownListButtonClose {

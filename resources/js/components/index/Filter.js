@@ -25,7 +25,8 @@ export default class Filter extends Component {
             minDate: new Date(),
             guests: this.props.guests ? Number(this.props.guests) : 1,
             geo: search ? search : '',
-            validateGeo: false
+            validateGeo: false,
+            hiddenForm : true
         }
 
 
@@ -75,11 +76,14 @@ export default class Filter extends Component {
                         return newState;
                     case 'UPDATE_DATE_OR_SELECT' :
                         return reducers.UPDATE_DATE_OR_SELECT(action, state);
+                    case 'UPDATE_STATE_ITEM' :
+                        return reducers.UPDATE_STATE_ITEM(action, state);
                     default:
                         throw new Error();
                 }
                 ;
             }} actions={(dispatch) => ({
+                updateGuests : (name, data) => {dispatch({type: 'UPDATE_STATE_ITEM', name, data})},
                 getTextValues: (data) => dispatch({type: 'GET_TEXT_DATA', data: data}),
                 handleDateAndSelectChange: (data, type) => actions.UPDATE_DATE_OR_SELECT(data,type,dispatch)
             })}>

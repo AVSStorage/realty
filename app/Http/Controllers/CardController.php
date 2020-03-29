@@ -59,8 +59,10 @@ class CardController extends Controller
             ->leftJoin('object_photos', 'object_id', '=', 'objects.id')
             ->where('objects.id', '=', $id)
             ->select('name', 'path', 'extension', 'description')
+            ->orderBy('objects.id')
             ->get()
             ->toArray();
+
 
 
         $model = new ServiceTypes();

@@ -54,14 +54,27 @@
                                 </defs>
                             </svg>
                         </div>
+                        @if (!empty($photos))
+                            <div>
+                            @foreach ($photos as $photo)
+                                <a href="{{ '/'.$photo['path'].'.'.$photo['extension'] }}" data-fancybox="gallery" class="d-none" data-caption="{{ $photo['description'] }}">
+                                    <img src="{{ asset( $photo['path'].'.'.$photo['extension']) }}" style="width:100%"
+                                         alt="Room" class="main__photo">
+                                </a>
+                            @endforeach
+                            </div>
+                        @endif
                         <div class="slider__main">
                             @if (!empty($photos))
                                 @foreach ($photos as $photo)
-
-
+                                    <div>
                                     <div class="slider">
-                                        <a href="#" data-fancybox data-animation-duration="800" data-fancybox-group="gallery" data-src="#animatModal"  class="photo">
+
+
+                                        <a href="#" data-fancybox data-animation-duration="800"  data-src="#animatModal"  class="photo">
+
                                             @if(($photo['path'] !== '') && file_exists($photo['path'].'.'.$photo['extension']))
+
                                                 <img src="{{ asset( $photo['path'].'.'.$photo['extension']) }}" style="width:100%"
                                                      alt="Room" class="main__photo">
                                             @else
@@ -72,14 +85,15 @@
                                             <img src="{{ asset('img//photo/5.png') }}" alt="full" class="big">
                                         </a>
                                     </div>
-
+                                    <div class="main__room">
+                                        {{ $photo['description'] }}
+                                    </div>
+                                    </div>
                                 @endforeach
                             @endif
 
                         </div>
-                        <div class="main__room">
-                            Гостинная
-                        </div>
+
 
                         <div class="slider__main-2 d-none d-sm-block">
                             @if (!empty($photos))
@@ -94,9 +108,12 @@
                         </div>
 
                         <div class="center d-none d-sm-block">
-                            <a href="#" class="main__more">
+                            <a data-fancybox-trigger="gallery"  class="main__more" href="javascript:;">
                                 Развернуть все фото
                             </a>
+{{--                            <a href="#" class="main__more">--}}
+{{--                                Развернуть все фото--}}
+{{--                            </a>--}}
                         </div>
 
                         <div class="main__service-inner">
