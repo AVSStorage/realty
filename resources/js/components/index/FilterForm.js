@@ -37,7 +37,7 @@ const FilterForm = ({handleSubmit}) => {
                 }
             }} actions={(dispatch) => ({
                 updatePersons: (name, data, {man, women, children }) => {
-                    name === 'woman' ?  updateGuests('guests', man + data + children.count) : updateGuests('guests', women + data + children.count);
+                    name === 'women' ?  updateGuests('guests', man + data + children.count) : updateGuests('guests', women + data + children.count);
                     dispatch({type: 'UPDATE_STATE_ITEM', name, data});
 
                 },
