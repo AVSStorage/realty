@@ -53,7 +53,8 @@ export default class Filter extends Component {
             } else if (property === 'geo') {
               //  state[property][0] && param.append('region', state[property][0]);
 
-                 param.append('city', state[property].city ? state[property].city  : "");
+                console.log(state[property].city !== undefined, state[property].city);
+                state[property].city !== undefined && param.append('city', state[property].city);
              //   state[property][2] && param.append('place', state[property][2]);
                 //    param += `region=${this.state[property][0] ? this.state[property][0] : 1}&city=${this.state[property][1] ? this.state[property][1] : 1}&place=${this.state[property][2] ? this.state[property][2] : 1}`
             } else {
