@@ -15,17 +15,18 @@ export default class Filter extends Component {
 
         let tomorrow = new Date();
 
-        let search = this.props.region && (Number(this.props.region) !== 1) ? this.props.region : '';
-
-        search += this.props.city && (Number(this.props.city) !== 1) ? ',' + this.props.city : '';
+        // let search = this.props.region && (Number(this.props.region) !== 1) ? this.props.region : '';
+        //
+        // search += this.props.city && (Number(this.props.city) !== 1) ? ',' + this.props.city : '';
         // search += this.props.place && (Number(this.props.place) !== 1) ? this.props.region : '';
         this.state = {
             dateFrom: this.props.from ? new Date(Number(this.props.from)) : new Date(),
             dateTo: this.props.to ? new Date(Number(this.props.to)) : tomorrow.setDate(tomorrow.getDate() + 1),
             minDate: new Date(),
             guests: this.props.guests ? Number(this.props.guests) : 1,
-            geo: search ? search : '',
+            geo: this.props.city ? {city: this.props.city} : '',
             validateGeo: false,
+            sessionData: {},
             hiddenForm : true
         }
 
@@ -35,8 +36,13 @@ export default class Filter extends Component {
 
     handleSubmit(evt, currentState) {
         evt.preventDefault();
+
+
+        let newState = JSON.stringify({...currentState  , dateFrom: currentState.dateFrom.getTime() + Math.abs(currentState.dateFrom.getTimezoneOffset()*60000) , dateTo: typeof currentState.dateTo === 'number' ? currentState.dateTo : currentState.dateTo.getTime()  + Math.abs(currentState.dateTo.getTimezoneOffset()*60000)});
         delete currentState.minDate;
         delete currentState.validateGeo;
+        delete currentState.hiddenForm;
+        delete currentState.sessionData;
         let state = {...currentState};
         let param = new URLSearchParams();
 
@@ -45,9 +51,10 @@ export default class Filter extends Component {
                 param.append(property, state[property] ? state[property].getTime() : 0);
                 //param += `${property}=${state[property] ? state[property].getTime() : 0}&`
             } else if (property === 'geo') {
-                state[property][0] && param.append('region', state[property][0]);
-                state[property][1] && param.append('city', state[property][1]);
-                state[property][2] && param.append('place', state[property][2]);
+              //  state[property][0] && param.append('region', state[property][0]);
+
+                 param.append('city', state[property].city ? state[property].city  : "");
+             //   state[property][2] && param.append('place', state[property][2]);
                 //    param += `region=${this.state[property][0] ? this.state[property][0] : 1}&city=${this.state[property][1] ? this.state[property][1] : 1}&place=${this.state[property][2] ? this.state[property][2] : 1}`
             } else {
                 param.append(property, state[property]);
@@ -56,7 +63,12 @@ export default class Filter extends Component {
 
         }
 
-        window.location.href = '/catalog?' + param.toString();
+        newState = JSON.parse(newState);
+
+        axios.post('/objects/session/update', {sessionData: JSON.stringify({...newState,geo : newState.geo.city, dateTo: newState.dateTo,  dateFrom: newState.dateFrom , sessionData: newState.sessionData})}).then(() => {
+            window.location.href = '/catalog?' + param.toString();
+        })
+
 
     }
 
@@ -67,11 +79,12 @@ export default class Filter extends Component {
                 switch (action.type) {
                     case 'GET_TEXT_DATA':
                         let newState = {...state};
-                        if (action.data.split(',').length > 3) {
+                        if (action.data.length > 3) {
                             newState.validateGeo = true;
+                            newState.geo = action.data;
                         } else {
                             newState.validateGeo = false;
-                            newState.geo = action.data.trim().split(',');
+                            newState.geo = action.data;
                         }
                         return newState;
                     case 'UPDATE_DATE_OR_SELECT' :
@@ -83,8 +96,12 @@ export default class Filter extends Component {
                 }
                 ;
             }} actions={(dispatch) => ({
-                updateGuests : (name, data) => {dispatch({type: 'UPDATE_STATE_ITEM', name, data})},
-                getTextValues: (data) => dispatch({type: 'GET_TEXT_DATA', data: data}),
+                updateGuests : (name, data, session) => {
+                    dispatch({type: 'UPDATE_STATE_ITEM', name, data});
+                    dispatch({type: 'UPDATE_STATE_ITEM', name: 'sessionData', data: session});
+                },
+                updateField : (name,data) => {  dispatch({type: 'UPDATE_STATE_ITEM', name, data})},
+                getTextValues: (data) => {dispatch({type: 'GET_TEXT_DATA', data: data})},
                 handleDateAndSelectChange: (data, type) => actions.UPDATE_DATE_OR_SELECT(data,type,dispatch)
             })}>
                 <FilterForm handleSubmit={this.handleSubmit}/>

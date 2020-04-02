@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Events\MessageSent;
 use App\Message;
 use App\Objects;
+use App\ObjectSubTypes;
 use App\Orders;
 use App\User;
 use Illuminate\Http\Request;
@@ -94,6 +95,7 @@ class OwnerDashboard extends Controller
            }])->with('objectOccupation')->with('objectPhotos')->get()->toArray();
 
 
+
            foreach ($data as $item) {
                foreach ($item['object_service'] as $service) {
                    if ((int)$item['type'] === 1) {
@@ -131,38 +133,21 @@ class OwnerDashboard extends Controller
        }
 
            $data = [['object_service' => $order->leftJoin('objects','objects.id','=','orders.object_id')->leftJoin('object_service','object_service.object_id','=','objects.id')->where('orders.user_id','=',$user->getAttribute('id'))->whereRaw('service_id  IN (4,16,204,205)')->get(['service_id','object_service.object_id','value','type','string'])->toArray()]];
+        $types = ObjectSubTypes::all()->toArray();
+
 
            foreach ($data as $item) {
                foreach ($item['object_service'] as $service) {
 
-                   if ((int)$service['type'] === 1) {
+
+
+
                        if ((int)$service['service_id'] === 4) {
-                           $string = 'Гостиница - на ул ' .
-                               $service['string'] . '-' .
-                               $service['value'] . 'м²';
-                       }
-
-                   } elseif ((int)$service['type'] === 2) {
-                       if ((int)$service['service_id'] === 4) {
-                           $string = $service['value'] . '-комнатная квартира на ул. ' . $service['string'] . ' -  ';
-                       } elseif ((int)$service['service_id'] === 16) {
-                           $string .= $service['value'] . ' м²';
-                       }
-
-
-
-                   } elseif ((int)$service['type'] === 3) {
-                       if ((int)$service['service_id'] === 205) {
-                           $string = ' Дом -   ' . $service['value'] . '-комнат  на ул. ' . $service['string'] . ' - ';
-                       } elseif ((int)$service['service_id'] === 16) {
-                           $string .= $service['value'] . ' м²';
-                       }
-                   } elseif ($service['type'] === 4) {
-                       if ((int)$service['service_id'] === 16) {
-                           $string = ' Комната на ул. ' . $service['string'] . ' - ' . $service['value'] . ' м²';
-                       }
+                           $string = $types[$service['type'] - 1]['name'].' - на ул ' .
+                               $service['string'];
+                       }  if ((int)$service['service_id'] === 16) {
+                       $string .= ' - ' . $service['value'] . ' м²';
                    }
-
 
                    $objects[$service['object_id']] = $string;
 
@@ -170,8 +155,6 @@ class OwnerDashboard extends Controller
                $string='';
 
            }
-
-
 
 
 
@@ -187,6 +170,7 @@ class OwnerDashboard extends Controller
                     }
                 }
             }
+
 
         $counter =  $this->getCounter();
 

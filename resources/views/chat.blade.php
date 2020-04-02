@@ -15,7 +15,7 @@
                     </div>
 
                     @role('client')
-                        <div class="attention">
+                        <div class="attention attention__wrapper">
                             <div class="attention__inner " style="flex-direction: row">
                                 <div class="attention__left"><img src="/img/choice/1.png" alt="Summer"></div>
                                 <div class="attention__right">
@@ -28,7 +28,7 @@
                                     </div>
 
                                     <div class="personal__rev__inner">
-                                        <div class="center__rev-btn"><button disabled="{{ (int)$orderInfo[0]['status'] !== 1 }}" class="peronal__rev__btn">Внести предоплату</button></div>
+                                        <div class="center__rev-btn"><button disabled="{{ (int)$orderInfo[0]['status'] !== 1 }}" class="peronal__rev__btn btn btn-success">Внести предоплату</button></div>
                                     </div>
 
                                     <div class="attention__footer-inner">

@@ -15,7 +15,7 @@ class Orders extends Model
      * @var string
      */
     protected $table = 'orders';
-    protected $fillable = ['object_id','user_id','date_from','date_to','status','parents','children'];
+    protected $fillable = ['object_id','user_id','date_from','date_to','status','parents','children','totalPrice'];
 
     public function objects() {
         return $this->belongsTo(Objects::class,'id');

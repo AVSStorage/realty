@@ -40,6 +40,7 @@ const Card = ({limit, days}) => {
 
 
 
+
     const types =  new Map([
         [1, 'Гостиница'],
         [2, 'квратира'],
@@ -53,7 +54,6 @@ const Card = ({limit, days}) => {
         [3,  'дом'],
         // [4,  'комната'],
     ]);
-
 
 
 
@@ -97,30 +97,30 @@ const Card = ({limit, days}) => {
                                     </div>
                                 </div>
                                 <div className="choice__left-info">
-                                    { Number(item.objectType) === 1 && (
+                                    { Number(item.type_id) === 1 && (
                                         <div className="choice__info-title">
-                                            { item.objectName }
+                                            { item.name }
                                         </div>
                                     )
 
                                     }
-                                    { Number(item.objectType) === 2  && (
+                                    { Number(item.type_id) === 2  && (
                                         <div className="choice__info-title">
-                                            { item.objectName } - {item.services ? item.services["16"] : ''} м²
+                                            { item.name } - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 
                                     }
-                                    { (Number(item.objectType) === 3) && (
+                                    { (Number(item.type_id) === 3) && (
                                         <div className="choice__info-title">
-                                            { item.objectName }  - {item.services ? item.services["16"] : ''} м²
+                                            { item.name }  - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 
                                     }
-                                    { Number(item.objectType) === 4 && (
+                                    { Number(item.type_id) === 4 && (
                                         <div className="choice__info-title">
-                                            { item.objectName } - {item.services ? item.services["16"] : ''} м²
+                                            { item.name } - {item.services ? item.services["16"] : ''} м²
                                         </div>
                                     )
 

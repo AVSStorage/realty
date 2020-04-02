@@ -82,9 +82,10 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
             options={options}
             className="automplete"
             autoComplete
+            onChange={(data,value) => {getInputValue(value === null ? {city: ""} : value);} }
             includeInputInList
             freeSolo
-            value={ { city : value.toString()}}
+            value={value}
             disableOpenOnFocus
             renderInput={params => (
                 <TextField
@@ -95,7 +96,7 @@ export default function GoogleMaps({getInputValue, validate, value, width = fals
                     error={validate}
                     inputProps= {{...params.inputProps,
                         autoComplete: 'new-password'}}
-                    onChange = {(data) => {getInputValue(data.target.value);  setInputValue(data.target.value)}}
+                    onChange = {(data) => {  setInputValue(data.target.value)}}
                 />
             )}
             renderOption={option => {

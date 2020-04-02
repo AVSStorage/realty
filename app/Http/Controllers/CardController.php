@@ -6,7 +6,9 @@ use App\Objects;
 use App\ObjectService;
 use App\ObjectSubTypes;
 use App\ServiceTypes;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +27,7 @@ class CardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index($id)
+    public function index(Request $request, $id)
     {
         $model = new Objects();
 
@@ -125,9 +127,21 @@ class CardController extends Controller
             ->toArray();
 
         $currentDate = Date::createFromTimestamp(strtotime($occupation[0]['dateFrom']));
-
-
         $occupation[0]['days'] = $currentDate->addDays($occupation[0]['min_days'])->format('Y-m-d');
+        $occupation[0]['guests'] = 1;
+        $occupation[0]['maxDate'] = $occupation[0]['dateTo'];
+        if ($request->session()->has('order')) {
+            $occupationSession = collect($request->session()->get('order')[0]);
+
+            $currentDate = Date::createFromTimestamp(strtotime($occupationSession->get('dateFrom')));
+            $dateTo = Date::createFromTimestamp(strtotime($occupationSession->get('dateTo')));
+
+            $occupationSession = collect($request->session()->get('order')[0])->merge(['user_id' => $occupation[0]['user_id'], 'min_days' => $dateTo->diffInDays($currentDate), 'id' => $occupation[0]['id'], 'days' =>  $occupationSession->get('dateFrom'), 'maxDate' => $occupation[0]['dateTo']]);
+            $occupation[0] = $occupationSession->toArray();
+        }
+
+
+
 
 
         $data = $model->with(['objectService' => function ($query) {
@@ -172,10 +186,9 @@ class CardController extends Controller
 
         $types = ObjectSubTypes::all()->toArray();
 
-
         $breadcrums = "<div class='crop__title'><span class='crop__span'>Главная </span> › <span class=\"crop__span\">" . $items[0]["country"] . "</span>  › <span class=\"crop__span\">" . $items[0]["region"] . "</span> › <span class=\"crop__span\">" . $items[0]["city"] . "</span> › <span class=\"crop__span\">" . $items[0]["area"] . "</span> › <span class=\"crop__span\">" . $types[(int)$items[0]["type"] - 1]['name'] . "</span> › <span class=\"crop__span\">" . $objects["key"] . "</span></div>";
 
-
+       // dump($occupation[0]);
         $title = "Снять " . $types[(int)$items[0]["type"] - 1]['name'] . " в городе " . $items[0]["city"];
         return view('card')->with('locking', $locking)->with('occupation', $occupation[0])->with('addService', $addServices)->with('description', $result)->with('item', $items[0])->with('info', $services)->with('icons', $icons)->with('photos', $photos)->with('disable', (int)$occupation[0]['user_id'] === \Auth::id())
             ->with("breadCrumbs", $breadcrums)->with("title", $title)->with('name', $types[(int)$items[0]["type"] - 1]['name'])->with('type', $types[(int)$items[0]["type"] - 1]['type_id'])->with('prefix', $this->declOfNum((int)$addServices[3]['value'], ['комната', 'комнаты', 'комнат']));

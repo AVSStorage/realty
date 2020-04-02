@@ -260,6 +260,7 @@ const WrappedObjectsFilter = WrapperStateContainer({
     },
     actions: (dispatch) => ({
         updateState: function(data) {
+
             dispatch({type: 'UPDATE_STATE', data: data});
             this.setState({loading: false})
         },
@@ -291,7 +292,7 @@ const WrappedObjectsFilter = WrapperStateContainer({
                         value.value = false
                     )
                 });
-
+                $('.right__object').html('Найдено ' + state.data.length + ' ' + declOfNum(state.data.length, ['объект', 'объекта', 'объектов']));
             dispatch({type: 'RESET_STATE', value: state}) } )
            // this.updateState().then((data) => data).then(response => )
         },

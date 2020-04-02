@@ -16,7 +16,7 @@ const FilterForm = ({handleSubmit}) => {
     const globalState = useStoreContext();
     const {dateFrom, dateTo, minDate, guests, validateGeo, geo, hiddenForm} = globalState;
     let value = geo ? geo : '';
-    const {getTextValues, handleDateAndSelectChange, updateGuests} = useStoreActions();
+    const {getTextValues, handleDateAndSelectChange, updateGuests, updateField} = useStoreActions();
     return (
         <form onSubmit={(evt) => handleSubmit(evt, globalState)} className="row align-items-center pl-4"
               style={{position: "relative"}}>
@@ -37,15 +37,27 @@ const FilterForm = ({handleSubmit}) => {
                 }
             }} actions={(dispatch) => ({
                 updatePersons: (name, data, {man, women, children }) => {
-                    name === 'women' ?  updateGuests('guests', man + data + children.count) : updateGuests('guests', women + data + children.count);
+                    name === 'women' ?  updateGuests('guests', man + data + children.count, {man, women: data, children }) : updateGuests('guests', women + data + children.count, {man : data, women, children });
                     dispatch({type: 'UPDATE_STATE_ITEM', name, data});
 
                 },
                 updateChildren : (data, children, field, {man, women}, update = true) => {
 
+
                     dispatch({type: 'UPDATE_STATE_ITEM', name: 'children', data: {...children, [field]: data}});
+
                     if (update) {
-                        updateGuests('guests', man + women + data);
+                        updateGuests('guests', man + women + data, {
+                            man,
+                            women,
+                            children: {...children, [field]: data}
+                        });
+                    } else {
+                        updateGuests('guests', man + women + children.count, {
+                            man,
+                            women,
+                            children: {...children, [field]: data}
+                        });
                     }
                 }
             })} reducer={(state, action) => {
@@ -57,10 +69,10 @@ const FilterForm = ({handleSubmit}) => {
                 }
                 ;
             }}>
-                <TextField onFocus={() => updateGuests('hiddenForm', false)}   InputProps={{
+                <TextField onFocus={() => updateField('hiddenForm', false)}   InputProps={{
                     readOnly: true,
                 }} className="guests mr-2" value={guests + ' ' + declOfNum(guests, ['гость','гостя','гостей'])}/>
-                <GuestWidget showed={hiddenForm} hideForm={updateGuests}/>
+                <GuestWidget showed={hiddenForm} hideForm={updateField}/>
             </StateProvider>
             <button type="submit" className="btn  form--btn-index  house--btn  btn--header">Найти</button>
         </form>

@@ -6,6 +6,7 @@ use App\Events\MessageDelivery;
 use App\Events\MessageSent;
 use App\Message;
 use App\Objects;
+use App\ObjectSubTypes;
 use App\Orders;
 use App\User;
 use Illuminate\Http\Request;
@@ -93,35 +94,17 @@ class ChatsController extends Controller
 
         $string = '';
         $address= [];
+        $types = ObjectSubTypes::all()->toArray();
         foreach ($data as $item) {
             foreach ($item['object_service'] as $service) {
-                if ((int)$item['type'] === 1) {
-                    if ((int)$service['service_id'] === 4) {
-                        $string = 'Гостиница - на ул' .
-                            $item['string'] . '-' .
-                            $service['value'] . 'м²';
-                    }
 
-                } elseif ((int)$item['type'] === 2) {
-                    if ((int)$service['service_id'] === 4) {
-                        $string = $service['value'] . '-комнатная квартира на ул. ' . $item['string'] . ' -  ';
-                    } elseif ((int)$service['service_id'] === 16) {
-                        $string .= $service['value'] . ' м²';
-                    }
 
-                } elseif ((int)$item['type'] === 3) {
-                    if ((int)$service['service_id'] === 205) {
-                        $string = ' Дом -   ' . $service['value'] . '-комнат  на ул. ' . $item['string'] . ' - ';
-                    } elseif ((int)$service['service_id'] === 16) {
-                        $string .= $service['value'] . ' м²';
-                    }
-                } elseif ($item['type'] === 4) {
-                    if ((int)$service['service_id'] === 16) {
-                        $string = ' Комната на ул. ' . $item['string'] . ' - ' . $service['value'] . ' м²';
-                    }
+                if ((int)$service['service_id'] === 4) {
+                    $string = $types[$item['type'] - 1]['name'].' - на ул ' .
+                        $item['string'];
+                }  if ((int)$service['service_id'] === 16) {
+                    $string .= ' - ' . $service['value'] . ' м²';
                 }
-
-
             }
             $address[$item['id']] = $string;
             $string = '';
@@ -147,34 +130,14 @@ class ChatsController extends Controller
         foreach ($data as $item) {
             foreach ($item['object_service'] as $service) {
 
-                if ((int)$service['type'] === 1) {
-                    if ((int)$service['service_id'] === 4) {
-                        $string = 'Гостиница - на ул ' .
-                            $service['string'] . '-' .
-                            $service['value'] . 'м²';
-                    }
-
-                } elseif ((int)$service['type'] === 2) {
-                    if ((int)$service['service_id'] === 4) {
-                        $string = $service['value'] . '-комнатная квартира на ул. ' . $service['string'] . ' -  ';
-                    } elseif ((int)$service['service_id'] === 16) {
-                        $string .= $service['value'] . ' м²';
-                    }
 
 
-
-                } elseif ((int)$service['type'] === 3) {
-                    if ((int)$service['service_id'] === 205) {
-                        $string = ' Дом -   ' . $service['value'] . '-комнат  на ул. ' . $service['string'] . ' - ';
-                    } elseif ((int)$service['service_id'] === 16) {
-                        $string .= $service['value'] . ' м²';
-                    }
-                } elseif ($service['type'] === 4) {
-                    if ((int)$service['service_id'] === 16) {
-                        $string = ' Комната на ул. ' . $service['string'] . ' - ' . $service['value'] . ' м²';
-                    }
+                if ((int)$service['service_id'] === 4) {
+                    $string = $types[$service['type'] - 1]['name'].' - на ул ' .
+                        $service['string'];
+                }  if ((int)$service['service_id'] === 16) {
+                    $string .= ' - ' . $service['value'] . ' м²';
                 }
-
 
                 $address[$service['object_id']] = $string;
 

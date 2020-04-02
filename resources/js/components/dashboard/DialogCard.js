@@ -23,9 +23,11 @@ export default function DialogCard({messages}) {
                         {message.message.length > 0 ? message.message[0].message : ''}
                     </div>
 
-                    {Number(message.info.status) === 0 && ( <div className="center__rev-btn">
-                        <a href="#" className="peronal__rev__btn">Предложить бронь</a>
-                    </div>)}
+                    {(Number(message.info.status)  === 0 && message.type !== 'userOrders') && (
+                        <div className="center__rev-btn">
+                            <a href="#" className="peronal__rev__btn">Предложить бронь</a>
+                        </div>
+                    )}
                     </div>
                     <div className="attention__footer-inner">
                         <div className="attention__footer-right">

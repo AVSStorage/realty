@@ -313,6 +313,19 @@ $object = new ObjectSubTypes();
         ];
     }
 
+    public function updateSession(Request $request) {
+        $data = json_decode($request->get('sessionData'));
+        $session_data = ['occupation' => $data->sessionData ,'dateFrom' => date('Y-m-d',  $data->dateFrom/1000), 'dateTo' => date('Y-m-d',  $data->dateTo/1000), 'region' => isset($data->region) ?  $data->region : null, 'guests' => isset($data->guests) ? $data->guests : 1 , 'city' => isset($data->city) ? $data->city : null];
+
+        if ($request->session()->has('order')) {
+            $request->session()->forget('order');
+            session()->save();
+        }
+
+        $request->session()->push('order', $session_data);
+
+    }
+
     public function addNewObject(Request $request)
     {
         $data = json_decode($request->getContent(), true);
@@ -432,6 +445,12 @@ $object = new ObjectSubTypes();
 
         $data['objects'] = $this->generateSendedArray($data['objects'],$metro, $services, $photos, $sea );
 
+        $types = ObjectSubTypes::all()->toArray();
+
+        foreach ($data['objects'] as $key => $item) {
+            $data['objects'][$key]['name'] = $types[(int)$item["type"] - 1]['name'];
+            $data['objects'][$key]['type_id'] =  $types[(int)$item["type"] - 1]['type_id'];
+        }
 
         return response()->json(['objects' => $data['objects']]);
     }
@@ -498,8 +517,15 @@ $object = new ObjectSubTypes();
         $photos = $this->getIntersectedByIdCollection($model->getPhotos(),  $data['objects']);
         $services = $this->getIntersectedByIdCollection($model->getServices(),  $data['objects']);
 
+
         $data['objects'] = $this->generateSendedArray($data['objects'],$metro, $services, $photos, $sea );
 
+        $types = ObjectSubTypes::all()->toArray();
+
+        foreach ($data['objects'] as $key => $item) {
+            $data['objects'][$key]['name'] = $types[(int)$item["type"] - 1]['name'];
+            $data['objects'][$key]['type_id'] =  $types[(int)$item["type"] - 1]['type_id'];
+        }
 
         return response()->json(['objects' => $data['objects']]);
     }
@@ -641,16 +667,6 @@ $object = new ObjectSubTypes();
         }
 
 
-//
-//        foreach ($data['objects'] as $key => $item){
-//            foreach ($services as $service) {
-//                if ($item['id'] == $service['object_id'] ){
-//                    $data['objects'][$key]['services'][$service['service_id']] =  $service['value'];
-//                }
-//            }
-//        }
-
-
         foreach ($data['objects'] as $key => $item) {
             foreach ($photos as $photo) {
                 if ($item['id'] == $photo['object_id']) {
@@ -660,6 +676,12 @@ $object = new ObjectSubTypes();
             }
         }
 
+        $types = ObjectSubTypes::all()->toArray();
+
+        foreach ($data['objects'] as $key => $item) {
+            $data['objects'][$key]['name'] = $types[(int)$item["type"] - 1]['name'];
+            $data['objects'][$key]['type_id'] =  $types[(int)$item["type"] - 1]['type_id'];
+        }
 
         return response()->json($data['objects']);
     }

@@ -51,8 +51,8 @@ class Application extends Component {
             ...this.props,
             geo: '',
             validateGeo: false,
-            children: 2,
-            guests: 1,
+            children: this.props.children,
+            guests: this.props.guests,
             name: '',
             email: '',
             disabled: this.props.disable !== "",
@@ -62,9 +62,10 @@ class Application extends Component {
             dateTo: this.props.dateto,
             validationError: false,
             dateFrom: new Date(this.props.datefrom) < new Date() ? new Date() : new Date(this.props.datefrom),
-            maxDate: new Date(this.props.dateto) < new Date() ? new Date() : new Date(this.props.dateto),
+            maxDate: new Date(this.props.maxdate) < new Date() ? new Date() : new Date(this.props.maxdate),
             hideOnMobile: true,
             valid: true,
+            minDate: this.props.mindate < new Date() ?  new Date() : this.props.mindate,
             validateError: ''
         }
     }
@@ -144,6 +145,7 @@ class Application extends Component {
         });
         const path = this.state.authorized ? '/orders/create' : '/order/create/new-user';
         const objId = $('#objectId').val();
+
         fetch(path, {
             method: 'POST',
             headers: {
@@ -210,7 +212,7 @@ class Application extends Component {
                                                     autoOk
                                                     variant="inline"
                                                     className="datepicker"
-                                                    minDate={new Date()}
+                                                    minDate={this.props.minDate}
                                                     format={localeFormatMap['ru']}
                                                     renderDay={(day, selectedDate, isInCurrentMonth, dayComponent) => {
                                                        // const isSelected = isInCurrentMonth && selectedDays.includes(date.getDate());
@@ -265,7 +267,7 @@ class Application extends Component {
                                                     autoOk
                                                     variant="inline"
                                                     className="datepicker"
-                                                    minDate={this.state.mindate}
+                                                    minDate={this.props.minDate}
                                                     format={localeFormatMap['ru']}
                                                     InputProps={{
                                                         endAdornment: (
@@ -338,11 +340,11 @@ class Application extends Component {
                                     <Select value={this.state.children}
                                             onChange={(data) => this.onSelectChange(data, 'children')} labelId="label"
                                             id="select" className="guests">
-                                        <MenuItem value="1">Без детей</MenuItem>
-                                        <MenuItem value="2">1 ребенок</MenuItem>
-                                        <MenuItem value="3">2 ребенка</MenuItem>
-                                        <MenuItem value="4">3 ребенка</MenuItem>
-                                        <MenuItem value="5">4 детей и более</MenuItem>
+                                        <MenuItem value="0">Без детей</MenuItem>
+                                        <MenuItem value="1">1 ребенок</MenuItem>
+                                        <MenuItem value="2">2 ребенка</MenuItem>
+                                        <MenuItem value="3">3 ребенка</MenuItem>
+                                        <MenuItem value="4">4 детей и более</MenuItem>
                                     </Select>
                                     {/*<input className="main--form" type="text" placeholder="1 ребенок">*/}
                                     {/*    <img className="main--form__images" src="{{ asset('/img/down.png') }}"*/}
@@ -433,9 +435,11 @@ class Application extends Component {
                                     </a> Предоплата 15 %
                                 </div>
                             </div>
+                            <input type={"hidden"} name={"totalPrice"}
+                                   value={this.state.price  * this.state.days}/>
                             <input type={"hidden"} name={"parents"}
                                    value={this.state.guests !== 7 ? this.state.guests : 10}/>
-                            <input type={"hidden"} name={"parents"}
+                            <input type={"hidden"} name={"children"}
                                    value={this.state.children !== 5 ? this.state.children : 5}/>
                             <input type={"hidden"} name={"date_from"}
                                    value={new Date(this.state.dateFrom).getFullYear() + "-" + ((new Date(this.state.dateFrom).getMonth() + 1) < 10 ? '0' + (new Date(this.state.dateFrom).getMonth() + 1) : (new Date(this.state.dateFrom).getMonth() + 1)) + "-" + new Date(this.state.dateFrom).getDate()}/>
@@ -487,7 +491,7 @@ class Application extends Component {
 
                             </div>
                             <div className="text-center fancy__animation">
-                                <button disabled={this.state.disabled} type="submit" type={'submit'}
+                                <button disabled={this.state.disabled} type="submit"
                                         className="fancy__btn">Отправить запрос на бронь
                                 </button>
                             </div>
@@ -514,7 +518,6 @@ class Application extends Component {
 const app = document.getElementById('cardFilter');
 
 if (app) {
-    console.log(app.dataset);
     ReactDOM.render(<Application {...app.dataset} />, app);
 }
 

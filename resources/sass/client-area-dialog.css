@@ -602,5 +602,13 @@ body {
     color: #fff;
 }
 
+.attention__wrapper .attetion__footer-text-4 {
+    width: 100% !important;
+}
 
+.attention__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 /*/Footer*/

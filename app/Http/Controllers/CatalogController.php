@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Objects;
+use App\ObjectSubTypes;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
@@ -25,7 +27,7 @@ class CatalogController extends Controller
          *
          * @return \Illuminate\Contracts\Support\Renderable
          */
-        public function index()
+        public function index(Request $request)
         {
 
             $items = [];
@@ -38,11 +40,12 @@ class CatalogController extends Controller
             $model = new Objects();
 
 
+
             $start_date = new DateTime();
-            $start_date->setTimestamp($dateTo/1000);
+            $start_date->setTimestamp($dateFrom/1000);
 
             $end_date = new DateTime();
-            $end_date->setTimestamp($dateFrom/1000);
+            $end_date->setTimestamp($dateTo/1000);
 
             if ($dateFrom && $dateTo) {
             $dispatchFromDate = substr($dateFrom, 0, strpos($dateFrom, '('));
@@ -55,7 +58,7 @@ class CatalogController extends Controller
             $items = $model
                 ->leftJoin('object_service','object_service.object_id','=','objects.id')
                 ->leftJoin('object_occupation','object_occupation.object_id','=','objects.id')
-                ->whereRaw("(date_from <= '".(date('Y-m-d',  $dateFrom/1000))."' and ( date_to >= '".(date('Y-m-d', $dateTo/1000))."' ) and (service_id = 205 and value > ".$guests.") ) ". ( !intval($region) || !intval($city) ? "and ( ".(!intval($region) ?" (region LIKE '%".$region."%')" : '')." ".(!intval($city) ?" and (city LIKE '%".$city."%')" : '').")" : ''))
+                ->whereRaw("(date_from <= '".(date('Y-m-d',  $dateFrom/1000))."' and ( date_to >= '".(date('Y-m-d', $dateTo/1000))."' ) and (service_id = 205 and value >= ".$guests.") ) ". ( !intval($region) || !intval($city) ? "and ( ".(!intval($region) ?" (region LIKE '%".$region."%')" : '')." ".(!intval($city) ?" and (city LIKE '%".$city."%')" : '').")" : ''))
                 ->select('city','string','housing','house','type','objects.id','date_to','date_from','center_path','country',"area","region")
                 ->distinct()
                 ->get();
@@ -132,16 +135,6 @@ class CatalogController extends Controller
             }
 
 
-//
-//            foreach ($items as $key => $item){
-//                foreach ($services as $service) {
-//                    if ($item['id'] == $service['object_id'] ){
-//                        $items[$key]['services'][$service['service_id']] =  $service['value'];
-//                    }
-//                }
-//            }
-
-
 
             foreach ($items as $key => $item){
                 foreach ($photos as $photo) {
@@ -153,21 +146,19 @@ class CatalogController extends Controller
             }
 
 
+
             foreach ($items as $key => $item){
                 $items[$key]['days'] = round((strtotime($item['date_to']) - strtotime($item['date_from'])) / (60 * 60 * 24));
             }
 
-                $types = [
-                    'Отель', 'Гостиница', 'Гостевой дом',
-                    'Мини гостиница',
-                    'Квартира, апартаменты', 'Отель эконом-класс', 'Эллинг по номерам', 'База отдыха',
-                    'Тур база',
-                    'Дом, коттедж, эллинг',
-                    'Отель эконом-класс', 'Эллинг по номерам',
-                    'База отдыха',
-                    'Тур база',
-                    'Комната', 'Санаторий', 'Пансионат', 'Хостел', 'Кровать и завтрак'
-                ];
+                $types = ObjectSubTypes::all()->toArray();
+
+            foreach ($items as $key => $item) {
+                $items[$key]['name'] = $types[(int)$item["type"] - 1]['name'];
+                $items[$key]['type_id'] =  $types[(int)$item["type"] - 1]['type_id'];
+            }
+
+
 
 
             $breadCrumbs = count($items) > 0 ?
@@ -175,13 +166,16 @@ class CatalogController extends Controller
             : '<div class="search__title">Главная › <span class="search__active">Каталог</span></div>';
 
 
-            $title = count($items) > 0 ? "Снять ".$types[ (int)$items[0]["type"] - 1]. " в городе " . $items[0]["city"] : "Снять без посредников - Каталог";
+            $title = count($items) > 0 ? "Снять ".$types[ (int)$items[0]["type"] - 1]['name']. " в городе " . $items[0]["city"] : "Снять без посредников - Каталог";
 
-                return view('catalog')->with('items', $items)->with('days',date_diff($start_date,$end_date)->days)->with('breadCrumbs',$breadCrumbs)->with("title",$title);
+
+                return view('catalog')->with('items', $items)->with('days',date_diff($start_date,$end_date)->days)->with('breadCrumbs',$breadCrumbs)->with("title",$title)->with('city', $city);
             } else {
+
+
                 $title =  "Снять без посредников - Каталог";
                 $breadCrumbs =   '<div class="search__title">Главная › <span class="search__active">Каталог</span></div>';
-                return view('catalog')->with('items', $items)->with('days',round((strtotime($dateFrom) - strtotime($dateTo)) / (60 * 60 * 24)))->with('breadCrumbs',$breadCrumbs)->with("title",$title);
+                return view('catalog')->with('items', $items)->with('days',round((strtotime($dateFrom) - strtotime($dateTo)) / (60 * 60 * 24)))->with('breadCrumbs',$breadCrumbs)->with("title",$title)->with('city', $city);
             }
         }
 }
