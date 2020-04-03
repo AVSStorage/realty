@@ -158,7 +158,7 @@ class Application extends Component {
             if (!error.error) {
                 $.fancybox.close();
                 this.setState({valid: true})
-                //window.location.href = '/dashboard';
+                window.location.href = '/dashboard';
             } else {
                 this.setState({validateError: error.error, valid: false})
             }
