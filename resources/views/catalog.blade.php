@@ -31,7 +31,7 @@
 
                             @else
                                 <div style="display: flex;flex-wrap:wrap">
-                                <div id="cardFilters" data-region="{{  $city }}"></div>
+                                <div id="cardFilters" data-region="{{  $city }}" data-error="{{ is_null(app('request')->input('dateFrom')) ?  ""  :  "По Вашему запросу ничего не найдено. Ознакомтесь с другими предложениями."}}"></div>
                                 </div>
                             @endif
                         </div>

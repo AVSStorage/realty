@@ -32,6 +32,7 @@ class ObjectsFilter extends Component {
         this.state = {
             loading: true,
             limit: 4,
+            error: this.props.error ? this.props.error : '' ,
             hideOnMobile: true,
             sortedFilter: 0,
             transitionIn: 0,
@@ -212,7 +213,7 @@ class ObjectsFilter extends Component {
                         </div>
                     </div>
 
-                    <CardsList hideOnMobile={this.hideOnMobile} region={this.props.region} days={this.props.days}/>
+                    <CardsList error={this.state.error} hideOnMobile={this.hideOnMobile} region={this.props.region} days={this.props.days}/>
 
 
                 </div>

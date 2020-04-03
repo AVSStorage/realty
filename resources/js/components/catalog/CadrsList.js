@@ -7,7 +7,7 @@ import {MenuItem} from "@material-ui/core";
 import {useStoreActions, useStoreContext} from "../../store/store";
 
 
-export default function CardsList({region, hideOnMobile, days}) {
+export default function CardsList({region, hideOnMobile, days, error}) {
 
 
     const filters = [
@@ -28,6 +28,7 @@ export default function CardsList({region, hideOnMobile, days}) {
 
                 <div className="content__right-title">
                     Аренда посуточно в городе {region}
+                    <p>{error}</p>
                 </div>
 
                 <div className="content__right-rev">
